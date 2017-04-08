@@ -1,44 +1,41 @@
 import { observable, action } from 'mobx'
+import Expenses from './Expenses.js'
 
 class Contacts {
   @observable all = []
 
   @observable isLoading = false
 
-  @action fetchAll() {
-        this.all = [
-              { id:1,
-                name: 'Hans',
-                email: 'hans@hansi.de',
-                total: -2,
-                picture:'https://randomuser.me/api/portraits/med/men/83.jpg'
-              },
-              { id:2,
-                name: 'Petra',
-                email: 'asd@gmx.de',
-                total: 2,
-                picture:'https://randomuser.me/api/portraits/med/women/83.jpg'
-              },
-              { id:3,
-                name: 'Frank',
-                email: 'here@esrik.de',
-                total: 218,
-                picture:'https://randomuser.me/api/portraits/med/men/81.jpg'
-              }
-        ]
-/*      this.isLoading = false
-      const response = await fetch('http://localhost:3000/v1/contacts')
-      const status = await response.status
+  @action async fetchAll() {
 
-      if (status === 200) {
-        this.all = response.json()
-      }
-*/
+          // TODO langfristig firebase nutzen
+          this.isLoading = false
+
+          const response = await fetch('https://fika-f86d5.firebaseio.com/users.json')
+          const status = await response.status
+
+          var fullUsers = []
+
+          if (status === 200) {
+            console.log(">> getContacts")
+
+            await response.json().then((data) => {
+              console.log(">> setTotal")
+              console.log(data)
+              fullUsers = data
+            }).then(() => {
+              fullUsers.forEach(data => {
+                  data.total = Expenses.getTotal(data.id)
+              })
+            }).then(() => {
+              this.all = fullUsers
+            })
+
+          }
   }
 
   @action add(data){
     data.picture = "http://lorempixel.com/100/100"
-    data.total = "0"
 
     const existing = this.all
     this.all = existing.concat(data)

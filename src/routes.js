@@ -6,7 +6,7 @@ import c from './container'
 
 const routes =
   <div>
-    <Redirect exact from='/' to='/contacts' />
+    <Redirect from='/' to='/contacts' />
     <Route exact path='/contacts' component={ c.Contacts.Collection } />
     <Route path='/contacts/:contactId' component={ c.Contacts.Show } />
   </div>

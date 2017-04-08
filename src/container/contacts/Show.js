@@ -33,7 +33,7 @@ class Show extends Component {
 
     this.props.expenses.add({
       id: this.props.expenses.all.slice().length + 1,
-      amount: amount,
+      amount: parseInt(amount, 10),
       contactId: contactId
     })
 

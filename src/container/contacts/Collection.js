@@ -10,8 +10,11 @@ import NewContact from '../../components/NewContact'
 class Collection extends Component {
 
   componentWillMount() {
-    if(this.props.contacts.all.slice().length <= 0) this.props.contacts.fetchAll()
-    if(this.props.expenses.all.slice().length <= 0) this.props.expenses.fetchAll()
+    if(this.props.contacts.all.slice().length <= 0) {
+      this.props.expenses.fetchAll().then(
+        this.props.contacts.fetchAll()
+      )
+    }
   }
 
     // Add New Contact Button clicked

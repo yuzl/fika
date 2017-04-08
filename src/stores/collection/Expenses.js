@@ -1,31 +1,28 @@
 import { observable, action } from 'mobx'
+/*
 
+curl -X POST -d '{"id":7,"amount":12,"contactId":3}' 'https://fika-f86d5.firebaseio.com/expenses.json'
+
+*/
 class Expenses {
   @observable all = []
 
   @observable activeExpenses = []
 
-  @action fetchAll() {
-    this.all = [
-      { id:0,
-        contactId: 1,
-        amount: -2
-      }, {
-        id:1,
-        contactId: 2,
-        amount: 2
-      },
-      {
-        id:2,
-        contactId: 3,
-        amount: -22
-      },
-      {
-        id:3,
-        contactId: 3,
-        amount: 240
-      }
-    ]
+  @action async fetchAll() {
+
+          // TODO langfristig firebase nutzen
+          this.isLoading = false
+          const response = await fetch('https://fika-f86d5.firebaseio.com/expenses.json')
+          const status = await response.status
+
+          if (status === 200) {
+            console.log(">> getExpenses")
+            const data = await response.json()
+            var arr = Object.keys(data).map(function(k) { return data[k] });
+
+            this.all = await arr
+          }
   }
 
   @action getTotal(contactId){
@@ -39,12 +36,26 @@ class Expenses {
     return countTotal
   }
 
-  @action add(data){
+  @action async add(data){
 
-    const existing = this.all
+    console.log(JSON.stringify(data))
+    var existing = this.all
     this.all = existing.concat(data)
+    this.find(data.id)
 
-    this.activeExpenses = this.all.slice().filter(c => c.contactId === parseInt(data.contactId, 10))
+    this.isLoading = false
+    const response = await fetch('https://fika-f86d5.firebaseio.com/expenses.json',
+                                {
+                                  method: 'POST',
+                                  body: JSON.stringify(data)
+                                 })
+    const status = await response.status
+
+    if (status === 200) {
+      console.log("Transmitted")
+    } else if (status === 405){
+      alert("ERROR 405")
+    }
   }
 
   @action find(contactId) {
