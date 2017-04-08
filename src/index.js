@@ -7,8 +7,7 @@ import { Provider } from 'mobx-react'
 import routes from './routes'
 import stores from './stores'
 
-import './normalize.css'
-import './index.css'
+import './index.scss'
 
 ReactDOM.render(
   <Provider contacts={stores.contacts} expenses={stores.expenses}>

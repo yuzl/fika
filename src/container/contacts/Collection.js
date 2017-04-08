@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 
-import './Collection.css'
+import './Collection.scss'
 
-import Contact from '../../components/Contact'
+import Contact from '../../components/contact/Contact'
 import NewContact from '../../components/NewContact'
 
 @inject(['contacts'], ['expenses']) @observer

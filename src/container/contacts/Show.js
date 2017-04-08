@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 
 import './Show.css'
 
-import NewExpense from '../../components/NewExpense'
-import ContactDetail from '../../components/ContactDetail'
+import NewExpense from '../../components/newExpense/NewExpense'
+import ContactDetail from '../../components/contact/ContactDetail'
 import Remove from '../../components/Remove'
 
 @inject(['contacts'], ['expenses']) @observer
