@@ -1,0 +1,42 @@
+.button {
+  background: tomato;
+  color: white;
+  padding: .5em 1em;
+}
+.contactBox {
+  display: inline-block;
+  flex-grow: 1;
+  width: 30%;
+  margin-bottom: 2em;
+
+  img {
+    border-radius: 50%;
+    width: 85px;
+    height: 85px;
+  }
+
+  .contactTitle {
+    margin-top: .5em;
+  }
+
+  .total {
+    margin-top: -1em;
+
+    p{
+      display: inline-flex;
+      padding: .2em 1em;
+      border-radius: 20px;
+      color: white;
+      font-weight: bold;
+
+      &.red {
+        background-color: #f5ae3d;
+      }
+
+      &.green {
+        background-color: #228b9e;
+      }
+    }
+  }
+
+}

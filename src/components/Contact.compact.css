@@ -1,0 +1,15 @@
+.button { background: tomato; color: white; padding: .5em 1em; }
+
+.contactBox { display: inline-block; flex-grow: 1; width: 30%; margin-bottom: 2em; }
+
+.contactBox img { border-radius: 50%; width: 85px; height: 85px; }
+
+.contactBox .contactTitle { margin-top: .5em; }
+
+.contactBox .total { margin-top: -1em; }
+
+.contactBox .total p { display: inline-flex; padding: .2em 1em; border-radius: 20px; color: white; font-weight: bold; }
+
+.contactBox .total p.red { background-color: #f5ae3d; }
+
+.contactBox .total p.green { background-color: #228b9e; }
