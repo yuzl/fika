@@ -66,34 +66,23 @@ p {
 }
 
 
-.user {
-    padding: 50px 0;
-    overflow: hidden;
-    
-    &-item {
-        width: 125px;
-        height: 300px;
 
-        
-        &-form {
-            height: 125px;
-            width: 125px;
-            background-color: #E9435C;
-            color: #fff;
-            border-radius: 50%;
-            margin: 0 auto;
-            transform: scale(0.5);
-            transition: transform 0.5s;
-        }
-        
-        &.slick-center {
+
+.user.swiper-container {
+    padding: 50px 0;
+    
+    .swiper-wrapper {
+        .slider-swipe {
             .user-item-form {
-                transform: scale(1);
-            }
-        }
-        &.slick-active {
-            .user-item-form {
-                //transform: scale(1.5);
+                display: block;
+                height: 125px;
+                width: 125px;
+                background-color: #E9435C;
+                color: #fff;
+                border-radius: 50%;
+                //margin: 0 auto;
+                //transform: scale(0.5);
+                transition: transform 0.5s;
             }
         }
     }

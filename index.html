@@ -5,43 +5,99 @@
     <title>Site</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     
-    <!--<link rel="stylesheet" type="text/css" href="assets/css/style.css" />!-->
     <link rel="stylesheet/less" type="text/css" href="assets/css/styles.less" />
     <script>less = { env: 'development'};</script>
-    <script src="assets/js/less.min.js"></script>
+    <!--<script src="assets/js/less.min.js"></script>!-->
     <script>less.watch();</script>
     
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
+    
+    
+    <link rel="stylesheet" type="text/css" href="assets/css/swiper.css"/>
+    
+    <style>
+        .swiper-container {
+            width: 100%;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            width: 300px;
+            height: 300px;
+        }
+    </style>
 				
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css" />
+
 </head>
 <body>
     
-    <div class="user">
-        <div class="user-item">
+<div class="swiper-container user">
+    <div class="swiper-wrapper">
+        <div class="slider-swipe user-item">
             <div class="user-item-form">F</div>
         </div>
-        <div class="user-item">
+        <div class="slider-swipe user-item">
             <div class="user-item-form">Y</div>
         </div>
-        <div class="user-item">
+        <div class="slider-swipe user-item">
             <div class="user-item-form">T</div>
         </div>
-        <div class="user-item">
+        <div class="slider-swipe user-item">
             <div class="user-item-form">M</div>
         </div>
-        <div class="user-item">
+        <div class="slider-swipe user-item">
             <div class="user-item-form">M</div>
         </div>
-        <div class="user-item">
+        <div class="slider-swipe user-item">
             <div class="user-item-form">M</div>
         </div>
-        <div class="user-item">
+        <div class="slider-swipe user-item">
             <div class="user-item-form">M</div>
         </div>
-        <div class="user-item">
+        <div class="slider-swipe user-item">
             <div class="user-item-form">M</div>
         </div>
     </div>
+</div>
+    
+    
+
+    
+    <!-- Swiper -->
+    <!--<div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/600/600/nature/1)"></div>
+            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/600/600/nature/2)"></div>
+            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/600/600/nature/3)"></div>
+            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/600/600/nature/4)"></div>
+            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/600/600/nature/5)"></div>
+            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/600/600/nature/6)"></div>
+            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/600/600/nature/7)"></div>
+            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/600/600/nature/8)"></div>
+            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/600/600/nature/9)"></div>
+            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/600/600/nature/10)"></div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>!-->
+
+    <script src="assets/js/swiper.min.js"></script>
+    <script>
+    var swiper = new Swiper('.swiper-container', {
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        coverflow: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows : true
+        }
+    });
+    </script>
     
     <!--<div class="transaction">
         <div class="transaction-direction">Frederik schuldet mir</div>
@@ -66,7 +122,6 @@
         <div class="keyboard-save">Speichern</div>
     </aside>!-->
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
 
     <script type="text/javascript" src="assets/js/script.js"></script>
     
