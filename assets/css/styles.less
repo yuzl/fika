@@ -71,47 +71,43 @@ p {
     overflow: hidden;
     
     &-item {
-        width: 60px;
-        height: 60px;
-        background-color: #E9435C;
-        color: #fff;
-        margin: 0 5px;
-        float: left;
-        border-radius: 50%;
-        .centered;
+        width: 125px;
+        height: 300px;
+
         
-        animation-name: intro;
-        animation-duration: 1.75s;
-        
-        @keyframes intro {
-            0%   {transform: scale(0)}
-            50%  {transform: scale(0)}
-            100% {transform: inherit}
+        &-form {
+            height: 125px;
+            width: 125px;
+            background-color: #E9435C;
+            color: #fff;
+            border-radius: 50%;
+            margin: 0 auto;
+            transform: scale(0.5);
+            transition: transform 0.5s;
         }
         
-        &-label {
-            .centered-inner;
+        &.slick-center {
+            .user-item-form {
+                transform: scale(1);
+            }
         }
-        
-        &.active {
-            transform: scale(1.5); 
-            animation-duration: 1.5s;
-            margin: 0 20px;
+        &.slick-active {
+            .user-item-form {
+                //transform: scale(1.5);
+            }
         }
-        
-        &.center {
-            transform: scale(2);
-            animation-duration: 1.25s;
-            margin: 0 40px;
-        }
-    }
-    &:after {
-        content:'';
-        display: block;
-        clear:both;
     }
 }
 
+
+        /*animation-name: intro;
+        animation-duration: 1.75s;*/
+        
+        /*@keyframes intro {
+            0%   {transform: scale(0)}
+            50%  {transform: scale(0)}
+            100% {transform: inherit}
+        }*/
 
 
 .transaction {
