@@ -1,5 +1,3 @@
-import Contacts from './contacts';
+import App from './App';
 
-export default {
-  Contacts
-}
+export default App

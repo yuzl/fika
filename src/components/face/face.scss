@@ -1,0 +1,10 @@
+.face {
+  width: 100px;
+  height: 100px;
+  background: red;
+  border-radius: 100px;
+
+  &-initial {
+    font-size: 20px;
+  }
+}

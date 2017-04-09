@@ -3,10 +3,9 @@ import { inject, observer } from 'mobx-react'
 import { Link } from 'react-router-dom'
 
 import './Show.css'
-
-import NewExpense from '../../components/newExpense/NewExpense'
-import ContactDetail from '../../components/contact/ContactDetail'
-import Remove from '../../components/Remove'
+import Expenses from '../../components'
+import NewExpense from '../../components'
+import Remove from '../../components'
 
 @inject(['contacts'], ['expenses']) @observer
 class Show extends Component {
@@ -47,8 +46,7 @@ class Show extends Component {
       <div id="Show">
         <Remove id={ this.state.contact.id }  />
         <NewExpense ref="NewExpense" addExpense={this.addExpense}/>
-        <ContactDetail
-          contact={ this.state.contact }
+        <Expenses
           expenses={ this.props.expenses.activeExpenses }
         />
         <p><Link to="/contacts">back</Link></p>

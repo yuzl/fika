@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class NewContact extends Component {
   render () {
     return (
-      <div>
+      <div className="newContact">
           <form onSubmit={this.props.addContact}>
             <fieldset>
               <legend>New Contact</legend>
@@ -18,3 +18,20 @@ class NewContact extends Component {
 }
 
 export default NewContact;
+
+
+// Add New Contact Button clicked
+addContact = (e) => {
+  e.preventDefault();
+
+  const name = this.refs.NewContact.refs.name.value;
+  const email = this.refs.NewContact.refs.email.value;
+
+  this.props.contacts.add({
+    id: this.props.contacts.all.length + 1,
+    name: name,
+    email: email
+  })
+}
+
+<NewContact ref="NewContact" addContact={this.addContact} />

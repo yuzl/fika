@@ -1,7 +1,7 @@
-import Collection from './Collection';
+import App from './App';
 import Show from './Show';
 
 export default {
-  Collection,
+  App,
   Show
 }
