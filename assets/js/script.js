@@ -11,5 +11,5 @@ $(".keyboard-save").click(function(event) {
 })
 
 $(".transaction").click(function(event) {
-    $(".keyboard").addClass("open");
+    $(".keyboard").toggleClass("open");
 })
