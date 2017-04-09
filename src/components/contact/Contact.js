@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import './contact.scss'
+import './Contact.compact.css'
 
-class contact extends Component {
+class Contact extends Component {
   render () {
     return (
       <div className="contactBox">
@@ -21,4 +21,4 @@ class contact extends Component {
   }
 }
 
-export default contact;
+export default Contact;

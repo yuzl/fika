@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-class addContact extends Component {
+class NewContact extends Component {
   render () {
     return (
       <div>
           <form onSubmit={this.props.addContact}>
             <fieldset>
-              <legend>Add Contact</legend>
+              <legend>New Contact</legend>
               <input ref='email' type="email" placeholder="hi@example.com"/>
               <input ref='name' type="text" placeholder="Contact Name"/>
               <button type="submit" className="button">Add</button>
@@ -17,4 +17,4 @@ class addContact extends Component {
   }
 }
 
-export default addContact;
+export default NewContact;

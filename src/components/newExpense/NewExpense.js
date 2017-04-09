@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import './newExpense.scss'
+import './NewExpense.compact.css'
 
-class newExpense extends Component {
+class NewExpense extends Component {
   render () {
     return (
       <div className="NewExpense">
@@ -18,4 +18,4 @@ class newExpense extends Component {
   }
 }
 
-export default newExpense;
+export default NewExpense;

@@ -1,13 +1,13 @@
-import contact from './contact/contact'
-import addContact from './addContact'
-import newExpense from './newExpense/newExpense'
-import contactDetail from './contact/contactDetail'
-import removeContact from './removeContact'
+import Contact from './contact/Contact'
+import NewContact from './NewContact'
+import NewExpense from './newExpense/NewExpense'
+import ContactDetail from './ContactDetail'
+import Remove from './Remove'
 
 export default {
-  contact,
-  addContact,
-  newExpense,
-  contactDetail,
-  removeContact
+  Contact,
+  NewContact,
+  NewExpense,
+  ContactDetail,
+  Remove
 }

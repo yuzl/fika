@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 
-import contact from './contact'
+import Contact from './Contact'
 
-class contactDetail extends Component {
+class ContactDetail extends Component {
   render () {
     return (
       <div>
-        <contact
+        <Contact
           id={ this.props.contact.id }
           name={ this.props.contact.name }
           picture={ this.props.contact.picture }
@@ -24,4 +24,4 @@ class contactDetail extends Component {
   }
 }
 
-export default contactDetail;
+export default ContactDetail;
