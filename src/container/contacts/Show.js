@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 
 import './Show.css'
 
-import NewExpense from '../../components/newExpense/NewExpense'
-import ContactDetail from '../../components/contact/ContactDetail'
-import Remove from '../../components/Remove'
+import NewExpense from '../../components/newExpense/newExpense'
+import ContactDetail from '../../components/contact/contactDetail'
+import Remove from '../../components/removeContact'
 
 @inject(['contacts'], ['expenses']) @observer
 class Show extends Component {
@@ -28,7 +28,7 @@ class Show extends Component {
   addExpense = (e) => {
     e.preventDefault();
 
-    const amount = this.refs.NewExpense.refs.amount.value;
+    const amount = this.refs.newExpense.refs.amount.value;
     const contactId = this.state.contact.id;
 
     this.props.expenses.add({
@@ -46,8 +46,8 @@ class Show extends Component {
     return (
       <div id="Show">
         <Remove id={ this.state.contact.id }  />
-        <NewExpense ref="NewExpense" addExpense={this.addExpense}/>
-        <ContactDetail
+        <NewExpense ref="newExpense" addExpense={this.addExpense}/>
+        <contactDetail
           contact={ this.state.contact }
           expenses={ this.props.expenses.activeExpenses }
         />

@@ -3,8 +3,8 @@ import { observer, inject } from 'mobx-react'
 
 import './Collection.scss'
 
-import Contact from '../../components/contact/Contact'
-import NewContact from '../../components/NewContact'
+import Contact from '../../components/contact/contact'
+import NewContact from '../../components/addContact'
 
 @inject(['contacts'], ['expenses']) @observer
 class Collection extends Component {
@@ -21,8 +21,8 @@ class Collection extends Component {
     addContact = (e) => {
       e.preventDefault();
 
-      const name = this.refs.NewContact.refs.name.value;
-      const email = this.refs.NewContact.refs.email.value;
+      const name = this.refs.newContact.refs.name.value;
+      const email = this.refs.newContact.refs.email.value;
 
       this.props.contacts.add({
         id: this.props.contacts.all.length + 1,
@@ -43,7 +43,7 @@ class Collection extends Component {
               />
             ) }
           </div>
-          <NewContact ref="NewContact" addContact={this.addContact} />
+          <newContact ref="newContact" addContact={this.addContact} />
         </div>
       );
     }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './NewExpense.compact.css'
+import './newExpense.scss'
 
 class NewExpense extends Component {
   render () {
