@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import './Contact.compact.css'
+import './Contact.scss'
 
 class Contact extends Component {
   render () {
