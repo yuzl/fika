@@ -7,7 +7,7 @@ class Face extends Component {
   render () {
     return (
       <div className="face">
-          <p className="face-inital">{ this.props.initial }</p>
+          <div className="face-initial">{ this.props.initial }</div>
       </div>
     )
   }
