@@ -4,7 +4,6 @@ import { observer, inject } from 'mobx-react'
 import './Collection.scss'
 
 import Contact from '../../components/contact/contact'
-import NewContact from '../../components/addContact'
 
 @inject(['contacts'], ['expenses']) @observer
 class Collection extends Component {
@@ -21,8 +20,8 @@ class Collection extends Component {
     addContact = (e) => {
       e.preventDefault();
 
-      const name = this.refs.newContact.refs.name.value;
-      const email = this.refs.newContact.refs.email.value;
+      const name = this.refs.addContact.refs.name.value;
+      const email = this.refs.addContact.refs.email.value;
 
       this.props.contacts.add({
         id: this.props.contacts.all.length + 1,
@@ -32,7 +31,7 @@ class Collection extends Component {
     }
 
     render() {
-      // ref="NewContact" links to the child component
+      // ref="addContact" links to the child component
       return (
         <div id="Collection">
           <div className="contactList">
@@ -43,7 +42,6 @@ class Collection extends Component {
               />
             ) }
           </div>
-          <newContact ref="newContact" addContact={this.addContact} />
         </div>
       );
     }

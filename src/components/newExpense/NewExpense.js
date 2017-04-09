@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import './newExpense.scss'
 
-class NewExpense extends Component {
+class newExpense extends Component {
   render () {
     return (
       <div className="NewExpense">
@@ -18,4 +18,4 @@ class NewExpense extends Component {
   }
 }
 
-export default NewExpense;
+export default newExpense;

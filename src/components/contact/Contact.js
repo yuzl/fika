@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import './contact.scss'
 
-class Contact extends Component {
+class contact extends Component {
   render () {
     return (
       <div className="contactBox">
@@ -21,4 +21,4 @@ class Contact extends Component {
   }
 }
 
-export default Contact;
+export default contact;
