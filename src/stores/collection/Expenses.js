@@ -11,7 +11,7 @@ class Expenses {
 
   getExpenses = (user1, user2) => {
 
-    // TODO: Namensgenerator eventuell ins Backend auslagen
+    // TODO Namensgenerator in das Backend auslagern
     const expenseName = 'exp_'+(user1<user2 ? user1+'_'+user2 : user2+'_'+user1);
     console.log(">>> expenseName", expenseName)
 
@@ -21,7 +21,7 @@ class Expenses {
     })
   }
 
-  // TODO: Add hinzufügen
+  // TODO Add hinzufügen
   add = (name) => {
     const id = Fb.expenses.push().key
     this.update(id, name)
