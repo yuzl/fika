@@ -6,6 +6,8 @@ class Expenses {
   @observable all = [{}]
 
   constructor() {
+
+    // On ermöglicht das live-rendern der Daten
     Fb.expenses.on('value', (snapshot) => {
       this.all = snapshot.val()
     })

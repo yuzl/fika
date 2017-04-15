@@ -11,12 +11,12 @@ var config = {
 firebase.initializeApp(config);
 
 const root = firebase.database().ref();
-const users = firebase.database().ref('users');
+const contacts = firebase.database().ref('users');
 const expenses = firebase.database().ref('expenses');
 
 const Fb = {
   root,
-  users,
+  contacts,
   expenses
 };
 export { Fb };

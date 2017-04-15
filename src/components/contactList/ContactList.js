@@ -8,9 +8,9 @@ class ContactList extends Component {
     return (
       <div className="contactList">
         <div className="contactList">
-            { this.props.contacts.all.slice().map(info =>
+            { this.props.contacts.map( (info, key) =>
               <Face
-                key={info.id}
+                key={key}
                 {...info}
               />
             ) }
