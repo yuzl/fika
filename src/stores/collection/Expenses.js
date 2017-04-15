@@ -1,74 +1,32 @@
-import { observable, action } from 'mobx'
-/*
+import { observable, computed } from 'mobx';
+import { Fb } from '../Firebase';
+import { toJS } from 'mobx';
 
-curl -X POST -d '{"id":7,"amount":12,"contactId":3}' 'https://fika-f86d5.firebaseio.com/expenses.json'
-
-*/
 class Expenses {
-  @observable all = []
+  @observable all = [{}]
 
-  @observable activeExpenses = []
-
-  @action async fetchAll() {
-
-          // TODO langfristig firebase nutzen
-          this.isLoading = false
-          const response = await fetch('https://fika-f86d5.firebaseio.com/expenses.json')
-          const status = await response.status
-
-          if (status === 200) {
-            console.log(">> getExpenses")
-            const data = await response.json()
-            var arr = Object.keys(data).map(function(k) { return data[k] });
-
-            this.all = await arr
-          }
+  constructor() {
+    Fb.expenses.on('value', (snapshot) => {
+      this.all = snapshot.val()
+    })
   }
 
-  @action getTotal(contactId){
-    const expenses = this.find(contactId).slice();
-
-    var countTotal = 0;
-    expenses.map(info =>
-      countTotal += parseInt(info.amount, 10)
-    )
-
-    return countTotal
+  @computed get json() {
+    return toJS(this.all)
   }
 
-  @action async add(data){
-
-    console.log(JSON.stringify(data))
-    var existing = this.all
-    this.all = existing.concat(data)
-    this.find(data.id)
-
-    this.isLoading = false
-    const response = await fetch('https://fika-f86d5.firebaseio.com/expenses.json',
-                                {
-                                  method: 'POST',
-                                  body: JSON.stringify(data)
-                                 })
-    const status = await response.status
-
-    if (status === 200) {
-      console.log("Transmitted")
-    } else if (status === 405){
-      alert("ERROR 405")
-    }
+  add = (name) => {
+    const id = Fb.expenses.push().key
+    this.update(id, name)
   }
 
-  @action find(contactId) {
-    this.activeExpenses = this.all.slice().filter(c => c.contactId === parseInt(contactId, 10))
-
-    return(
-      this.activeExpenses
-    )
+  update = (id, name) => {
+    Fb.expenses.update({[id]: {name}})
   }
 
-  @action remove(expenseId) {
-      console.log("REMOVE EXPENSE")
+  del = (id) => {
+    Fb.expenses.child(id).remove()
   }
 }
 
-export default new Expenses();
+export default new Expenses()

@@ -24,10 +24,9 @@ class Contacts {
             }).then(() => {
               fullUsers.forEach(data => {
                   data.total = Expenses.getTotal(data.id)
+                  this.all = fullUsers
+                  this.isLoaded = true
               })
-            }).then(() => {
-              this.all = fullUsers
-              this.isLoaded = true
             })
 
           }
