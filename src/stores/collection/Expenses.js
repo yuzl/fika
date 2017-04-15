@@ -5,18 +5,23 @@ import { toJS } from 'mobx';
 class Expenses {
   @observable all = [{}]
 
-  constructor() {
-
-    // On ermöglicht das live-rendern der Daten
-    Fb.expenses.on('value', (snapshot) => {
-      this.all = snapshot.val()
-    })
-  }
-
   @computed get json() {
     return toJS(this.all)
   }
 
+  getExpenses = (user1, user2) => {
+
+    // TODO: Namensgenerator eventuell ins Backend auslagen
+    const expenseName = 'exp_'+(user1<user2 ? user1+'_'+user2 : user2+'_'+user1);
+    console.log(">>> expenseName", expenseName)
+
+    Fb.expenses.child(expenseName).on('value', (snap) =>{
+      console.log( snap.val() )
+      this.all = snap.val()
+    })
+  }
+
+  // TODO: Add hinzufügen
   add = (name) => {
     const id = Fb.expenses.push().key
     this.update(id, name)
