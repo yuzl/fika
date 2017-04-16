@@ -5,6 +5,7 @@ import { h } from '../StoreHelpers'
 
 class Expenses {
   @observable all = {}
+  @observable isLoaded = false
 
   @computed get json() {
     return toJS(this.all)
@@ -20,6 +21,7 @@ class Expenses {
 
     Fb.expenses.child(expenseId).on('value', (snap) =>{
       this.all = snap.val()
+      this.isLoaded = true
     })
 
   }

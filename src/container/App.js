@@ -12,37 +12,88 @@ class App extends Component {
     // App für User 1
     this.props.user.fetchUser(1)
 
-    // Ausgaben mit User 2 laden
-    this.props.expenses.fetchExpenses(this.props.user.id, 2)
   }
 
   // Vorzeichen entsprechend dem Zahslenden
   calcAmount = (user, expense) => {
-      if(this.props.user.id === expense.contactId) return expense.amount * -1
+      if(this.props.user.id === parseInt(expense.contactId)) return expense.amount * -1
       return expense.amount
   }
 
   // Neue Ausgabe hinzufügen
-  addNewExpense = () => {
-    this.props.expenses.add(5, 1, 2)
+  addNewExpense = (e) => {
+    e.preventDefault()
+
+    const contactId = this.refs.contactId.value;
+    const amount = this.refs.amount.value;
+    this.props.expenses.add(
+      amount,
+      this.props.user.id,
+      contactId
+    )
+  }
+
+  // Aktiven Nutzer der App definieren
+  setActiveUser = (e) => {
+    e.preventDefault()
+    this.props.user.fetchUser(parseInt(this.refs.user.value))
+  }
+
+  // Aktiver Kontakt mit dem Ausgaben
+  setActiveContact = (e) => {
+    e.preventDefault()
+
+    const contactId = this.refs.contactId.value;
+    this.props.expenses.fetchExpenses(this.props.user.id, contactId)
   }
 
   render() {
+
+    // Render sobald Daten geladen wurden
+    if (!this.props.contacts.isLoaded) {
+        return <div>Loading...</div>
+    }
+
     return (
       <div id="app">
         <ContactList contacts={ this.props.contacts.json } />
-
         <code>FIREBASE TESTING</code>
+          <div>
+              <form>
+                <fieldset>
+                  <legend>Select Active User</legend>
+                    <select ref='user' onChange={this.setActiveUser}>
+                      { this.props.contacts.json.map((data, key) => {
+                        return <option value={data.id} key={ key }>{ data.name }</option>
+                      }) }
+                    </select>
+                </fieldset>
+                <fieldset>
+                  <legend>Select Contact</legend>
+                    <select ref='contactId' onChange={this.setActiveContact}>
+                      <option disabled selected value> -- select -- </option>
+                      { this.props.contacts.json.map((data, key) => {
+                        if(data.id === this.props.user.id ) return
+                        return <option value={data.id} key={ key }>{ data.name }</option>
+                      }) }
+                    </select>
+                </fieldset>
+              </form>
+          </div>
         <div>
-          <a href="#" onClick={this.addNewExpense}>ADD 5 FROM User1 TO User2</a>
+            <form onSubmit={this.addNewExpense}>
+              <fieldset>
+                <legend>New Expense</legend>
+                <input ref='amount' type="text" placeholder="8"/>
+                <button type="submit" className="button">Add Expense</button>
+              </fieldset>
+            </form>
         </div>
-
-        <h3>User1 - User2</h3>
         <ul>
           {this.props.expenses.entries
             .map( ([key, expense]) => (
                   <li key={ key }>
-                    { this.calcAmount(this.props.user.id, expense) } – { expense.timestamp }
+                    { this.calcAmount(this.props.user.id, expense) } – { new Date(expense.timestamp).toUTCString() }
                   </li>
             )
           )}
