@@ -10,7 +10,7 @@ class App extends Component {
 
   constructor(props) {
     super(props)
-    
+
     // App für usr_1f initialisieren
     this.props.user.fetchUser("usr_1f")
     this.props.contacts.fetchContacts("usr_1f")
