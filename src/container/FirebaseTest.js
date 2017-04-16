@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 
+import './firebaseTest.scss'
+
 @inject(['user'], ['contacts'], ['expenses']) @observer
 class FirebaseTest extends Component {
     // Vorzeichen entsprechend dem Zahslenden
@@ -58,48 +60,56 @@ class FirebaseTest extends Component {
 
       <code>FIREBASE TESTING</code>
               <div>
-                  <form>
-                    <fieldset>
+                  <form className="card">
+                    <div className="select">
                       <legend>Select Active User</legend>
-                        <select ref='user' defaultValue={ this.props.user.id } onChange={this.setActiveUser}>
-                          <option value="usr_1f">Fred</option>
-                          <option value="usr_2y">Yuri</option>
-                          <option value="usr_3t">Tilman</option>
-                        </select>
-                    </fieldset>
-                    <fieldset>
+                        <div className="select-dropdown">
+                          <select ref='user' defaultValue={ this.props.user.id } onChange={this.setActiveUser}>
+                            <option value="usr_1f">Fred</option>
+                            <option value="usr_2y">Yuri</option>
+                            <option value="usr_3t">Tilman</option>
+                          </select>
+                        </div>
+                    </div>
+                    <div className="select">
                       <legend>Select Contact</legend>
-                        <select ref='contactId' defaultValue="sel" onChange={this.setActiveContact}>
-                          <option value="sel" disabled> -- select -- </option>
+                        <div className="select-dropdown">
+                          <select ref='contactId' defaultValue="sel" onChange={this.setActiveContact}>
+                            <option value="sel" disabled> -- select -- </option>
 
-                          { this.props.contacts.json
-                            .map((data, key) => {
-                            return <option value={data.id} key={ key }>{ data.name }</option>
-                          }) }
-                        </select>
-                    </fieldset>
+                            { this.props.contacts.json
+                              .map((data, key) => {
+                              return <option value={data.id} key={ key }>{ data.name }</option>
+                            }) }
+                          </select>
+                        </div>
+                    </div>
                   </form>
               </div>
-            <div>
-                <form onSubmit={this.addNewExpense}>
-                  <fieldset>
-                    <legend>New Expense</legend>
-                    <input ref='amount' type="text" placeholder="42"/>
-                    <input ref='payer' type="checkbox" id="payer" />
-                    <label htmlFor="payer">Contact paid</label>
-                    <button type="submit" className="button">Add Expense</button>
-                  </fieldset>
-                </form>
+            <div className="card">
+              <h3>Expenses</h3>
+              <ul>
+                <li>{ !this.props.expenses.entries.length ? 'choose Contact first' : '' }</li>
+                {this.props.expenses.entries
+                  .map( ([key, expense]) => (
+                        <li key={ key }>
+                          <h1>{ this.calcAmount(expense) }</h1>
+                          <h4>{ new Date(expense.timestamp).toUTCString() }</h4>
+                        </li>
+                  )
+                )}
+              </ul>
             </div>
-            <ul>
-              {this.props.expenses.entries
-                .map( ([key, expense]) => (
-                      <li key={ key }>
-                        { this.calcAmount(expense) } – { new Date(expense.timestamp).toUTCString() }
-                      </li>
-                )
-              )}
-            </ul>
+            <form onSubmit={this.addNewExpense} className="card">
+              <fieldset>
+                <legend>New Expense</legend>
+                <input ref='amount' type="text" defaultValue="42" placeholder="42"/>
+                <label htmlFor="payer">
+                  <input ref='payer' type="checkbox" id="payer" /> Contact paid
+                </label>
+                <button type="submit">Add Expense</button>
+              </fieldset>
+            </form>
           </div>
         )
   }

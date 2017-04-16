@@ -25,8 +25,8 @@ class App extends Component {
 
     return (
       <div id="app">
-        <ContactList contacts={ this.props.contacts.json } />
         <FirebaseTest />
+        <ContactList contacts={ this.props.contacts.json } />
       </div>
     )
   }
