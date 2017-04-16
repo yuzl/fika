@@ -16,6 +16,11 @@ class Expenses {
   }
 
   fetchExpenses = ( userId, contactId ) => {
+
+    // Daten zurücksetzen
+    this.all = {}
+    this.isLoaded = false
+
     // Namen der Ausgabe generieren
     const expenseId = h.getExpensesId(userId, contactId)
 

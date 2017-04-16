@@ -1,7 +1,7 @@
 import { observable } from 'mobx';
 
 class User {
-  @observable id = 0
+  @observable id = ""
 
   fetchUser = ( userId ) => {
     this.id = userId
