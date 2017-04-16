@@ -1,30 +1,43 @@
-import { observable, computed } from 'mobx';
-import { Fb } from '../Firebase';
-import { toJS } from 'mobx';
+import { observable, computed, toJS } from 'mobx'
+import { Fb } from '../Firebase'
+
+import { h } from '../StoreHelpers'
 
 class Expenses {
-  @observable all = [{}]
+  @observable all = {}
 
   @computed get json() {
     return toJS(this.all)
   }
 
-  getExpenses = (user1, user2) => {
+  @computed get entries() {
+    return Object.entries(toJS(this.all))
+  }
 
-    // TODO Namensgenerator in das Backend auslagern
-    const expenseName = 'exp_'+(user1<user2 ? user1+'_'+user2 : user2+'_'+user1);
-    console.log(">>> expenseName", expenseName)
+  fetchExpenses = ( userId, contactId ) => {
+    // Namen der Ausgabe generieren
+    const expenseId = h.getExpensesId(userId, contactId)
 
-    Fb.expenses.child(expenseName).on('value', (snap) =>{
-      console.log( snap.val() )
+    Fb.expenses.child(expenseId).on('value', (snap) =>{
       this.all = snap.val()
     })
+
   }
 
   // TODO Add hinzufügen
-  add = (name) => {
-    const id = Fb.expenses.push().key
-    this.update(id, name)
+  add = (amount, payerId, contactId) => {
+
+    // Namen der Ausgabe generieren
+    const expenseId = h.getExpensesId(payerId, contactId)
+
+    var ret = {
+      'amount' : amount,
+      'payerId' : payerId,
+      'contactId' : contactId,
+      'timestamp' : Date.now()
+    }
+
+    Fb.expenses.child(expenseId).push(ret)
   }
 
   update = (id, name) => {

@@ -9,7 +9,7 @@ import App from './container'
 import './index.scss'
 
 ReactDOM.render(
-  <Provider contacts={stores.contacts} expenses={stores.expenses}>
+  <Provider user={stores.user} contacts={stores.contacts} expenses={stores.expenses}>
     <App />
   </Provider>,
   document.getElementById('root')
