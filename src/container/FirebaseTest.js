@@ -16,21 +16,24 @@ class FirebaseTest extends Component {
       e.preventDefault()
 
       const payer = !this.refs.payer.checked
-
       const contactId = this.refs.contactId.value;
       const amount = this.refs.amount.value;
+
+      // Unterscheiden wer bezahl hat
       if(payer){
-        this.props.expenses.add(
-          amount,
-          this.props.user.id,
-          contactId
-        )
+        this.props.expenses
+          .add(
+              amount,
+              this.props.user.id,
+              contactId
+          )
     } else {
-      this.props.expenses.add(
-        amount,
-        contactId,
-        this.props.user.id
-      )
+      this.props.expenses
+        .add(
+          amount,
+          contactId,
+          this.props.user.id
+        )
     }
     }
 
@@ -38,10 +41,16 @@ class FirebaseTest extends Component {
     setActiveUser = (e) => {
       e.preventDefault()
 
+      // Select auf Ursprung zurück setzen
       this.refs.contactId.value = "sel"
 
-      this.props.user.fetchUser(this.refs.user.value)
-      this.props.contacts.fetchContacts(this.refs.user.value)
+      // Entsprechenden Nutzer laden
+      this.props.user
+        .fetchUser(this.refs.user.value)
+
+      this.props.contacts
+        .fetchContacts(this.refs.user.value)
+
       this.props.expenses.all = []
     }
 
@@ -49,8 +58,10 @@ class FirebaseTest extends Component {
     setActiveContact = (e) => {
       e.preventDefault()
 
-      const contactId = this.refs.contactId.value;
-      this.props.expenses.fetchExpenses(this.props.user.id, contactId)
+      const contactId = this.refs.contactId.value
+
+      this.props.expenses
+        .fetchExpenses(this.props.user.id, contactId)
     }
 
   render () {
@@ -76,11 +87,9 @@ class FirebaseTest extends Component {
                         <div className="select-dropdown">
                           <select ref='contactId' defaultValue="sel" onChange={this.setActiveContact}>
                             <option value="sel" disabled> -- select -- </option>
-
                             { this.props.contacts.json
-                              .map((data, key) => {
-                              return <option value={data.id} key={ key }>{ data.name }</option>
-                            }) }
+                              .map((data, key) => <option value={data.id} key={ key }>{ data.name }</option>)
+                            }
                           </select>
                         </div>
                     </div>

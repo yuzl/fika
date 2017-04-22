@@ -31,7 +31,6 @@ class Expenses {
 
   }
 
-  // TODO Add hinzufügen
   add = (amount, payerId, contactId) => {
 
     // Namen der Ausgabe generieren
@@ -47,12 +46,14 @@ class Expenses {
     Fb.expenses.child(expenseId).push(ret)
   }
 
+  // TODO update definieren
   update = (id, name) => {
-    Fb.expenses.update({[id]: {name}})
+    // Fb.expenses.update({[id]: {name}})
   }
 
+  // TODO delete definieren
   del = (id) => {
-    Fb.expenses.child(id).remove()
+    // Fb.expenses.child(id).remove()
   }
 }
 

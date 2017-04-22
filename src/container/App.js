@@ -19,6 +19,7 @@ class App extends Component {
   render() {
 
     // Render sobald Daten geladen wurden
+    // TODO Loading Screen gestalten
     if (!this.props.contacts.isLoaded) {
         return <div>Loading...</div>
     }

@@ -31,10 +31,12 @@ class Contacts {
 
   }
 
+  // Gibt Einträge als JS Objetc zurück (toJS macht aus MOBX ein JS Object)
   @computed get json() {
     return toJS(this.all)
   }
 
+  // Gibt Einträge im Array wieder (toJS macht aus MOBX ein JS Object)
   @computed get entries() {
     return Object.entries(toJS(this.all))
   }
