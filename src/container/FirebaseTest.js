@@ -5,7 +5,7 @@ import './firebaseTest.scss'
 
 @inject(['user'], ['contacts'], ['expenses']) @observer
 class FirebaseTest extends Component {
-    // Vorzeichen entsprechend dem Zahslenden
+    // Vorzeichen entsprechend dem PAYER
     calcAmount = ( expense ) => {
         if(this.props.user.id === expense.contactId ) return expense.amount * -1
         return expense.amount
@@ -13,28 +13,29 @@ class FirebaseTest extends Component {
 
     // Neue Ausgabe hinzufügen
     addNewExpense = (e) => {
-      e.preventDefault()
+        // Verhinder Browser default event
+        e.preventDefault()
 
-      const payer = !this.refs.payer.checked
-      const contactId = this.refs.contactId.value;
-      const amount = this.refs.amount.value;
+        const payer = !this.refs.payer.checked
+        const contactId = this.refs.contactId.value
+        const amount = this.refs.amount.value
 
-      // Unterscheiden wer bezahl hat
-      if(payer){
+        // Unterscheiden wer bezahl hat
+        if(payer){
+          this.props.expenses
+            .add(
+                amount,
+                this.props.user.id,
+                contactId
+            )
+      } else {
         this.props.expenses
           .add(
-              amount,
-              this.props.user.id,
-              contactId
+            amount,
+            contactId,
+            this.props.user.id
           )
-    } else {
-      this.props.expenses
-        .add(
-          amount,
-          contactId,
-          this.props.user.id
-        )
-    }
+      }
     }
 
     // Aktiven Nutzer der App definieren
@@ -54,7 +55,7 @@ class FirebaseTest extends Component {
       this.props.expenses.all = []
     }
 
-    // Aktiver Kontakt mit dem Ausgaben
+    // Aktiver CONTACT mit entsprechenden Ausgaben
     setActiveContact = (e) => {
       e.preventDefault()
 
