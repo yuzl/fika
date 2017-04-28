@@ -28,6 +28,7 @@ class App extends Component {
      this.props.expenses.fetchExpenses(this.props.user.id, contactId)
 
      #Step 2 geladene Ausgaben als Array ausgeben
+     this.props.expenses.isLoaded // TRUE wenn Daten geladen wurden
      this.props.expenses.entries // Alle Ausgaben zwischen USER und CONTACT als Array
 
      #Step 3 Weitere Funktionen im FirebaseTest.js
