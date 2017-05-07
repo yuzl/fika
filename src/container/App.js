@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 
-import ContactList from '../components/contactList/ContactList'
-import FirebaseTest from './FirebaseTest'
+import PayerToggle from '../components/payerToggle/PayerToggle'
+
 import './app.scss'
 
 @inject(['user'], ['contacts'], ['expenses']) @observer
@@ -37,16 +37,10 @@ class App extends Component {
 
   render() {
 
-    // Render sobald Kontakte geladen wurden
-    // TODO Loading Screen gestalten
-    if (!this.props.contacts.isLoaded) {
-        return <div>Loading...</div>
-    }
 
     return (
       <div id="app">
-        <ContactList contacts={ this.props.contacts.json } />
-        <FirebaseTest />
+        <PayerToggle />
       </div>
     )
   }
