@@ -69,10 +69,10 @@ p {
     white-space: nowrap;
     overflow: auto;
     text-align: center;
-    //-webkit-overflow-scrolling: touch;
-    -webkit-scroll-snap-type: mandatory;
-    -webkit-scroll-snap-destination: 0% 33%;
-    -webkit-scroll-snap-points-x: repeat(33%);
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: mandatory;
+    scroll-snap-destination: 0% 33%;
+    scroll-snap-points-x: repeat(33%);
     
     //--scrollleft: 1;
 
@@ -88,8 +88,8 @@ p {
             width: 30vw;
             height: 30vw;
             display: inline-block;
-            transform: scale(0.66);
-            transition: transform 0.1s;
+            transform: scale(0);
+            transition: transform 0.05s;
             
             
         }
@@ -98,6 +98,19 @@ p {
             .gallery-item-inner {
                 --bla: 1;
                 transform: scale(var(--zoom));
+            }
+        }
+        
+        &.next {
+            .gallery-item-inner {
+                transform: scale(var(--zoom-next));
+            }
+        }
+        
+        
+        &.previous {
+            .gallery-item-inner {
+                transform: scale(var(--zoom-prev));
             }
         }
         

@@ -2,6 +2,7 @@ var bubbles = document.getElementById('bubbles');
 
 var active = 1;
 var items = bubbles.getElementsByClassName("gallery-item");
+var zoomfactor = 0.5;
 
 bubbles.onscroll = function(event) {
     //items.classList = "gallery-item";
@@ -10,20 +11,18 @@ bubbles.onscroll = function(event) {
     items[active+1].classList = "gallery-item next";
     
     
-    if(this.scrollLeft > (items[active].offsetLeft - items[0].offsetWidth/2) ) {
+    if(this.scrollLeft > (items[active].offsetLeft - items[active].offsetWidth/2) ) {
         active++;
     }
-    if(this.scrollLeft < (items[active-1].offsetLeft - items[0].offsetWidth/2) ) {
+    if(this.scrollLeft <= (items[active-1].offsetLeft - items[active].offsetWidth/2) ) {
         active--;
     }
     
-    var zoom = (this.scrollLeft - items[active-1].offsetLeft) / 100;
+    var zoom = 1 - (1-zoomfactor) * Math.abs(this.scrollLeft - items[active-1].offsetLeft) / (items[active].offsetWidth/2);
+    var zoomnext = ( 0.5 + (1-zoomfactor) * (this.scrollLeft - items[active-1].offsetLeft) / (items[active].offsetWidth/2) ) / 2;
+    var zoomprev = ( 0.5 - (1-zoomfactor) * (this.scrollLeft - items[active-1].offsetLeft) / (items[active].offsetWidth/2) ) / 2;
+    console.log(zoomnext + " " + zoom);
     document.body.style.setProperty('--zoom', zoom);
-    console.log(zoom);
+    document.body.style.setProperty('--zoom-next', (zoomnext));
+    document.body.style.setProperty('--zoom-prev', (zoomprev));
 }
-
-
-
-
-
-
