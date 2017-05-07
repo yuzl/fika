@@ -40,7 +40,7 @@ class App extends Component {
 
     return (
       <div id="app">
-        <PayerToggle />
+        <PayerToggle color="c-1" />
       </div>
     )
   }
