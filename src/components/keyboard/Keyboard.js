@@ -1,34 +1,37 @@
 import React, { Component } from 'react'
 
-import Amount from '../amount/Amount'
-
 import './keyboard.scss'
 
 class Keyboard extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {displayValue: 0}
+    const color = "b" + this.props.color.substring(1);
+
+    this.state = {
+      displayValue: '0',
+      bgColor : color
+    }
   }
 
   inputDigit = (digit) => {
     const currentValue = this.state.displayValue === 0 ? '' : this.state.displayValue
     const newValue = currentValue + "" + digit
 
+    this.props.changeAmount(newValue)
     this.setState( {displayValue :  newValue} )
   }
 
   removeDigit = () => {
     const newValue = this.state.displayValue.length === 1 ? 0 : this.state.displayValue.slice(0, -1)
 
+    this.props.changeAmount(newValue)
     this.setState( {displayValue :  newValue} )
   }
 
   render () {
     return (
-      <div>
-        <Amount amount={ this.state.displayValue } />
-        <div className="keyboard">
+        <div className={"keyboard " + this.state.bgColor }>
                 <div className="keyboard-numpad">
                     <div data-num="1" onClick={() => this.inputDigit(1)}>1</div>
                     <div data-num="2" onClick={() => this.inputDigit(2)}>2</div>
@@ -42,9 +45,8 @@ class Keyboard extends Component {
                     <div className="keyboard-numpad-delete" onClick={() => this.removeDigit()}>D</div>
                     <div data-num="0" onClick={() => this.inputDigit(0)}>0</div>
                 </div>
-                <div className="keyboard-save">Speichern</div>
+                <div className="keyboard-save">Eintragen</div>
         </div>
-      </div>
     )
   }
 }

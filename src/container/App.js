@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 
+import NewExpense from '../components/newExpense/NewExpense'
 import PayerToggle from '../components/payerToggle/PayerToggle'
 import Keyboard from '../components/keyboard/Keyboard'
 
@@ -12,6 +13,7 @@ class App extends Component {
   constructor(props) {
     super(props)
 
+    console.log("not useless")
     // App für fred = usr_1f initialisieren (yuri= usr_2y, tilman= usr_3t)
     // this.props.user.fetchUser("usr_1f")
     // this.props.contacts.fetchContacts("usr_1f")
@@ -40,8 +42,8 @@ class App extends Component {
 
     return (
       <div id="app">
-        <PayerToggle color="c-1" />
-        <Keyboard color="c-1" />
+      <PayerToggle color="c-1" />
+      <NewExpense color="c-1" />
       </div>
     )
   }
