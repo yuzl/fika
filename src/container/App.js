@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 
-import ContactList from '../components/contactList/ContactList'
 import Keyboard from '../components/keyboard/Keyboard'
-import FirebaseTest from './FirebaseTest'
 import './app.scss'
 
 @inject(['user'], ['contacts'], ['expenses']) @observer
@@ -13,8 +11,8 @@ class App extends Component {
     super(props)
 
     // App für fred = usr_1f initialisieren (yuri= usr_2y, tilman= usr_3t)
-    this.props.user.fetchUser("usr_1f")
-    this.props.contacts.fetchContacts("usr_1f")
+    // this.props.user.fetchUser("usr_1f")
+    // this.props.contacts.fetchContacts("usr_1f")
 
     /*
 
@@ -40,14 +38,10 @@ class App extends Component {
 
     // Render sobald Kontakte geladen wurden
     // TODO Loading Screen gestalten
-    if (!this.props.contacts.isLoaded) {
-        return <div>Loading...</div>
-    }
 
     return (
       <div id="app">
-        <ContactList contacts={ this.props.contacts.json } />
-        <Keyboard />
+        <Keyboard color="c-1" />
       </div>
     )
   }
