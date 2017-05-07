@@ -6,7 +6,7 @@
 
 // App Colors
 $c-primary: #333;
-$c-seconary: #A2A2A2;
+$c-grey: #A3A3A3;
 
 // Faces Colors
 $c-1: #E9435C; // red
@@ -29,12 +29,12 @@ $f-secondry: 'Comic Sans';
  ***************************/
 
 // Easing Curve
-$t-easing: ease-in-out;
+$t-easing: cubic-bezier(0.645, 0.045, 0.355, 1);
 
 // Transtions
-$transition-l: 800ms $t-easing;
-$transition-m: 400ms $t-easing;
-$transition-s: 200ms $t-easing;
+$t-long: 800ms;
+$t-medium: 400ms;
+$t-short: 200ms;
 
 /***************************
  ********* MARGINS *********
