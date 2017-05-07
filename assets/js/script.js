@@ -6,6 +6,11 @@ var zoomfactor = 0.5;
 
 bubbles.onscroll = function(event) {
     //items.classList = "gallery-item";
+    
+    for (var i=0;i<items.length; i++) {
+        items[i].classList = "gallery-item";
+    }
+    
     items[active].classList = "gallery-item active";
     items[active-1].classList = "gallery-item previous";
     items[active+1].classList = "gallery-item next";
