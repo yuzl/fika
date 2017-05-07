@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 
 import NewExpense from '../components/newExpense/NewExpense'
-import PayerToggle from '../components/payerToggle/PayerToggle'
 
 import './app.scss'
 
@@ -14,8 +13,12 @@ class App extends Component {
 
     console.log("not useless")
     // App für fred = usr_1f initialisieren (yuri= usr_2y, tilman= usr_3t)
-    // this.props.user.fetchUser("usr_1f")
-    // this.props.contacts.fetchContacts("usr_1f")
+    this.props.user
+      .fetchUser("usr_2y")
+    this.props.contacts
+      .fetchContacts("usr_2y")
+    this.props.expenses
+      .fetchExpenses("usr_2y", "usr_1f")
 
     /*
 
@@ -39,9 +42,15 @@ class App extends Component {
 
   render() {
 
+    // Render sobald Daten geladen wurden
+    // TODO Loading Screen gestalten
+    if (!this.props.contacts.isLoaded) {
+        return <div>Loading...</div>
+    }
+
     return (
       <div id="app">
-      <NewExpense color="c-1" />
+        <NewExpense color="c-1" user={ this.props.user } contacts={ this.props.contacts } expenses={ this.props.expenses }/>
       </div>
     )
   }

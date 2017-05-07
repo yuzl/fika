@@ -29,6 +29,10 @@ class Keyboard extends Component {
     this.setState( {displayValue :  newValue} )
   }
 
+  addExpense = () => {
+    this.props.addNewExpense()
+  }
+
   render () {
     return (
         <div className={"keyboard " + this.state.bgColor }>
@@ -44,7 +48,7 @@ class Keyboard extends Component {
                     <div data-num="9" onClick={() => this.inputDigit(9)}>9</div>
                     <div onClick={() => this.removeDigit()}>&larr;</div>
                     <div data-num="0" onClick={() => this.inputDigit(0)}>0</div>
-                    <div>Ok</div>
+                    <div onClick={() => this.addExpense() }>Ok</div>
                 </div>
         </div>
     )
