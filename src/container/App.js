@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 
 import ContactList from '../components/contactList/ContactList'
+import Keyboard from '../components/keyboard/Keyboard'
 import FirebaseTest from './FirebaseTest'
 import './app.scss'
 
@@ -46,7 +47,7 @@ class App extends Component {
     return (
       <div id="app">
         <ContactList contacts={ this.props.contacts.json } />
-        <FirebaseTest />
+        <Keyboard />
       </div>
     )
   }
