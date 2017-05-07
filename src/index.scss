@@ -1,5 +1,6 @@
 @import './normalize';
+@import './vars';
 
-body, html {
-  margin: 0
+body {
+  font-family: $f-primary;
 }

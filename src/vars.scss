@@ -1,0 +1,41 @@
+@import url('https://fast.fonts.net/cssapi/08d59f66-e4c5-4881-b50e-719c055575ea.css');
+
+/***************************
+ ********* COLORS **********
+ ***************************/
+
+// App Colors
+$c-primary: #333;
+$c-seconary: #999;
+
+// Faces Colors
+$c-1: #E9435C; // red
+$c-2: #904DE9; // purple
+$c-3: #4381E9; // blue
+
+/***************************
+ ******* TYPOGRAHPY ********
+ ***************************/
+
+// Primary Font Stack
+$f-primary: 'DIN Next W01';
+
+// Secondary Font Stack
+$f-secondry: 'Comic Sans';
+
+
+/***************************
+ ******* TRANSITIONS *******
+ ***************************/
+
+// Easing Curve
+$t-easing: ease-in-out;
+
+// Transtions
+$transition-l: 800ms $t-easing;
+$transition-m: 400ms $t-easing;
+$transition-s: 200ms $t-easing;
+
+/***************************
+ ********* MARGINS *********
+ ***************************/
