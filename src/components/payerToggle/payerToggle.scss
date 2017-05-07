@@ -3,7 +3,8 @@
 
 .payerToggle {
   color: $c-grey;
-
+  overflow: hidden;
+  width: 100vw;
 
 
   &-inner {

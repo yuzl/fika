@@ -41,7 +41,6 @@ class App extends Component {
 
     return (
       <div id="app">
-      <PayerToggle color="c-1" name="Peter" />
       <NewExpense color="c-1" />
       </div>
     )

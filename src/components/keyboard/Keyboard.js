@@ -42,10 +42,10 @@ class Keyboard extends Component {
                     <div data-num="7" onClick={() => this.inputDigit(7)}>7</div>
                     <div data-num="8" onClick={() => this.inputDigit(8)}>8</div>
                     <div data-num="9" onClick={() => this.inputDigit(9)}>9</div>
-                    <div className="keyboard-numpad-delete" onClick={() => this.removeDigit()}>D</div>
+                    <div onClick={() => this.removeDigit()}>&larr;</div>
                     <div data-num="0" onClick={() => this.inputDigit(0)}>0</div>
+                    <div>Ok</div>
                 </div>
-                <div className="keyboard-save">Eintragen</div>
         </div>
     )
   }

@@ -1,9 +1,11 @@
 @import './normalize';
 @import './vars';
 
+
 body {
   font-family: $f-primary;
   font-weight: 200;
+  overflow: hidden;
   margin: 0;
   padding: 0;
 }
