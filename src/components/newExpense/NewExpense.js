@@ -38,7 +38,6 @@ class NewExpense extends Component {
               this.props.user.id,
               contactId
           )
-          console.log(this.props.expenses.entries)
     } else {
       this.props.expenses
         .add(
@@ -46,9 +45,9 @@ class NewExpense extends Component {
           contactId,
           this.props.user.id
         )
-        console.log(this.props.expenses.entries)
-
     }
+
+    this.setState({amount : '0'})
   }
 
   render () {

@@ -50,8 +50,16 @@ class App extends Component {
 
     return (
       <div id="app">
+        <div>{ this.props.expenses.entries
+          .reduce( (accumulator,currentValue) => {
+            let x = parseInt(currentValue[1].amount)
+            if(currentValue[1].payerId !== this.props.user.id) x = parseInt(currentValue[1].amount)*-1
+            return accumulator + x;
+          }, 0)
+        }</div>
+        
         <NewExpense color="c-1" user={ this.props.user } contacts={ this.props.contacts } expenses={ this.props.expenses }/>
-      </div>
+    </div>
     )
   }
 }

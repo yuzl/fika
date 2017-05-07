@@ -31,6 +31,7 @@ class Keyboard extends Component {
 
   addExpense = () => {
     this.props.addNewExpense()
+    this.setState( {displayValue :  '0'} )
   }
 
   render () {
