@@ -57,6 +57,7 @@ p {
   -webkit-scroll-snap-type: mandatory;
   -webkit-scroll-snap-destination: 0% calc(33.33333333%);
   -webkit-scroll-snap-points-x: repeat(calc(33.33333333%));
+  --scrollleft: 1;
 }
 .gallery-item {
   width: calc(33.33333333%);
@@ -73,7 +74,7 @@ p {
   transform: scale(0.33);
 }
 .gallery-item.active .gallery-item-inner {
-  transform: scale(1);
+  transform: scale(var(--bla));
 }
 .gallery-item.next .gallery-item-inner,
 .gallery-item.previous .gallery-item-inner {
