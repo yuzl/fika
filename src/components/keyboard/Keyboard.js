@@ -6,11 +6,8 @@ class Keyboard extends Component {
   constructor(props) {
     super(props)
 
-    const color = "b" + this.props.color.substring(1);
-
     this.state = {
       displayValue: '0',
-      bgColor : color
     }
   }
 
@@ -36,7 +33,7 @@ class Keyboard extends Component {
 
   render () {
     return (
-        <div className={"keyboard " + this.state.bgColor }>
+        <div className={"keyboard b" + this.props.color.substring(1) }>
                 <div className="keyboard-numpad">
                     <div data-num="1" onClick={() => this.inputDigit(1)}>1</div>
                     <div data-num="2" onClick={() => this.inputDigit(2)}>2</div>

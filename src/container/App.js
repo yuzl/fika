@@ -11,6 +11,10 @@ class App extends Component {
 
   constructor(props) {
     super(props)
+    this.state = {
+      activeContact : "usr_1f",
+      activeColor : "c-1"
+    }
 
     // App initialisieren fred= usr_1f yuri= usr_2y tilman= usr_3t
     this.props.user
@@ -19,31 +23,14 @@ class App extends Component {
       .fetchContacts("usr_2y")
     this.props.expenses
       .fetchExpenses("usr_2y", "usr_1f")
-
-    this.state = { activeContact : "usr_1f" }
-
-    /*
-
-     #INFO
-     this.props.user // Aktiver Nutzer
-
-     this.props.contacts.entries // Kontakte von USER als Array
-     this.props.contacts.json // Kontakte von USER als js object
-
-     #Step 1 Ausgaben zwischen USER und CONTACT (Beispiel 'usr_2y') runterladen
-     const contactId = 'usr_2y'
-     this.props.expenses.fetchExpenses(this.props.user.id, contactId)
-
-     #Step 2 geladene Ausgaben als Array ausgeben
-     this.props.expenses.isLoaded // TRUE wenn Daten geladen wurden
-     this.props.expenses.entries // Alle Ausgaben zwischen USER und CONTACT als Array
-
-     #Step 3 Weitere Funktionen im FirebaseTest.js
-    */
   }
 
   changeContact = (value) =>{
     this.setState({ activeContact : value })
+  }
+
+  changeColor = (value) =>{
+    this.setState({ activeColor : value })
   }
 
   render() {
@@ -56,7 +43,6 @@ class App extends Component {
 
     return (
       <div id="app">
-        <ContactList changeContact={ this.changeContact } contacts={ this.props.contacts.json } user={ this.props.user } expenses={ this.props.expenses }/>
         <div>{ this.props.expenses.entries
           .reduce( (accumulator,currentValue) => {
             let x = parseInt(currentValue[1].amount, 10)
@@ -64,7 +50,8 @@ class App extends Component {
             return accumulator + x;
           }, 0)
         }</div>
-        <NewExpense color="c-1" user={ this.props.user } activeContact={ this.state.activeContact } expenses={ this.props.expenses }/>
+        <ContactList changeContact={ this.changeContact } changeColor={ this.changeColor } color={ this.state.activeColor } contacts={ this.props.contacts.json } user={ this.props.user } expenses={ this.props.expenses }/>
+        <NewExpense color={ this.state.activeColor } user={ this.props.user } activeContact={ this.state.activeContact } expenses={ this.props.expenses }/>
     </div>
     )
   }

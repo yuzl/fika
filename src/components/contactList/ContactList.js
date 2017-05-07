@@ -9,15 +9,17 @@ class ContactList extends Component {
   setActiveContact = (value) => {
     const contactId = value
 
-    this.props.changeContact(value)
-
     this.props.expenses
       .fetchExpenses(this.props.user.id, contactId)
+
+    this.props.changeContact(value)
+
+    this.props.color === "c-2" ?     this.props.changeColor("c-1") : this.props.changeColor("c-2")
+
   }
 
   render () {
     return (
-      <div className="contactList">
         <div className="contactList">
             { this.props.contacts.map( (data, key) =>
               <Face
@@ -27,7 +29,6 @@ class ContactList extends Component {
               />
             ) }
           </div>
-      </div>
     )
   }
 }
