@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 
-import Keyboard from '../components/keyboard/Keyboard'
+import NewExpense from '../components/newExpense/NewExpense'
 import './app.scss'
 
 @inject(['user'], ['contacts'], ['expenses']) @observer
@@ -10,6 +10,7 @@ class App extends Component {
   constructor(props) {
     super(props)
 
+    console.log("not useless")
     // App für fred = usr_1f initialisieren (yuri= usr_2y, tilman= usr_3t)
     // this.props.user.fetchUser("usr_1f")
     // this.props.contacts.fetchContacts("usr_1f")
@@ -41,7 +42,7 @@ class App extends Component {
 
     return (
       <div id="app">
-        <Keyboard color="c-1" />
+        <NewExpense color="c-1" />
       </div>
     )
   }

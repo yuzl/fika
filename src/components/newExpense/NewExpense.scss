@@ -1,3 +1,7 @@
 .NewExpense{
-  margin-bottom: 3em;
+  display: inline-block;
+
+  #amount{
+    padding-bottom: 1em;
+  }
 }
