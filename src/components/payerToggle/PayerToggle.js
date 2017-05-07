@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Hammer from 'react-hammerjs'
 
 import './payerToggle.scss'
 
@@ -13,7 +12,6 @@ class PayerToggle extends Component {
   }
 
   togglePayer = (e) => {
-    console.log('tapped');
 
     if(this.state.hideGet === 'hidden') {
       this.setState ({ hideGive : 'hidden', hideGet : '' });
@@ -27,14 +25,12 @@ class PayerToggle extends Component {
   render () {
 
     return (
-      <div className="payerToggle">
-        <Hammer onTap={this.togglePayer}>
+      <div className="payerToggle" onClick={this.togglePayer}>
           <div className="payerToggle-inner">
             <span className={"payerToggle-get " + this.state.hideGet}>Ich bekomme von</span>
-            <span className={"payerToggle-name " + this.props.color}>Name</span>
+            <span className={"payerToggle-name " + this.props.color}>{ this.props.name }</span>
             <span className={"payerToggle-give " + this.state.hideGive}>bekommt von mir</span>
           </div>
-        </Hammer>
       </div>
     )
   }
