@@ -69,10 +69,10 @@ p {
     white-space: nowrap;
     overflow: auto;
     text-align: center;
-    -webkit-overflow-scrolling: touch;
-    -webkit-scroll-snap-type: mandatory;
+    //-webkit-overflow-scrolling: touch;
+    /*-webkit-scroll-snap-type: mandatory;
     -webkit-scroll-snap-destination: 0% calc(1/3*100%);
-    -webkit-scroll-snap-points-x: repeat(calc(1/3*100%));
+    -webkit-scroll-snap-points-x: repeat(calc(1/3*100%));*/
     
     --scrollleft: 1;
 
@@ -89,6 +89,7 @@ p {
             height: 30vw;
             display: inline-block;
             transform: scale(0.33);
+            transition: transform 0.1s;
             
             
         }

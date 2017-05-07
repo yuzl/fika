@@ -1,31 +1,23 @@
-var myElement = document.getElementById('myElement');
+var bubbles = document.getElementById('bubbles');
 
-/*
-// create a simple instance
-// by default, it only adds horizontal recognizers
-var mc = new Hammer(myElement);
+var active = 1;
+var items = bubbles.getElementsByClassName("gallery-item");
 
-// let the pan gesture support all directions.
-// this will block the vertical scrolling on a touch-device while on the element
-
-// listen to events...
-mc.on("panleft panright", function(ev) {
-    console.log(ev.type +" gesture detected.");
-});
-
-*/
-
-myElement.onscroll = function(event) {
-    var scrolled = this.scrollLeft;
-    //document.body.style.setProperty('--bla', this.scrollLeft);
-    console.log(scrolled);
+bubbles.onscroll = function(event) {
+    items[active].classList = "gallery-item active";
+    items[active-1].classList = "gallery-item previous";
+    items[active+1].classList = "gallery-item next";
     
-    if(scrolled == 125) {
-        this.classList.add('active');
+    if(this.scrollLeft > (items[active].offsetLeft - items[0].offsetWidth/2) ) {
+        active++;
     }
-    else {
-        this.classList.remove('active');
+    if(this.scrollLeft < (items[active-1].offsetLeft - items[0].offsetWidth/2) ) {
+        active--;
     }
 }
 
-//object.addEventListener("scroll", myScript);
+
+
+
+
+
