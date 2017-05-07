@@ -1,1 +1,7 @@
-@import './normalize.css';
+@import './normalize';
+@import './vars';
+
+
+body {
+  font-family: $f-primary;
+}
