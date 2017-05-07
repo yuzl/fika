@@ -8,7 +8,12 @@ class Keyboard extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {displayValue: 0}
+    const color = "b" + this.props.color.substring(1);
+
+    this.state = {
+      displayValue: 0,
+      bgColor : color
+    }
   }
 
   inputDigit = (digit) => {
@@ -27,8 +32,8 @@ class Keyboard extends Component {
   render () {
     return (
       <div>
-        <Amount amount={ this.state.displayValue } />
-        <div className="keyboard">
+        <Amount amount={ this.state.displayValue } color={ this.props.color } />
+        <div className={"keyboard " + this.state.bgColor }>
                 <div className="keyboard-numpad">
                     <div data-num="1" onClick={() => this.inputDigit(1)}>1</div>
                     <div data-num="2" onClick={() => this.inputDigit(2)}>2</div>

@@ -3,4 +3,14 @@
 
 body {
   font-family: $f-primary;
+  margin: 0;
+  padding: 0;
+}
+
+.c-1{
+  color: $c-1;
+}
+
+.b-1{
+  background-color: $c-1;
 }

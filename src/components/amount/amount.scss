@@ -1,0 +1,14 @@
+@import '../../vars';
+
+.displayValue{
+  width: 100vw;
+  text-align: center;
+  font-size: 42px;
+
+  &::after{
+    content: "€";
+    font-size: .5em;
+    vertical-align: top;
+    color: $c-seconary;
+  }
+}
