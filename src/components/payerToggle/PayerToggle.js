@@ -15,7 +15,7 @@ class PayerToggle extends Component {
   togglePayer = (e) => {
     console.log('tapped');
 
-    if(this.state.hideGet == 'hidden') {
+    if(this.state.hideGet === 'hidden') {
       this.setState ({ hideGive : 'hidden', hideGet : '' });
     } else {
       this.setState ({ hideGive : '', hideGet : 'hidden' });

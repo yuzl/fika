@@ -15,7 +15,7 @@ class Keyboard extends Component {
   }
 
   inputDigit = (digit) => {
-    const currentValue = this.state.displayValue === 0 ? '' : this.state.displayValue
+    const currentValue = this.state.displayValue === '0' ? '' : this.state.displayValue
     const newValue = currentValue + "" + digit
 
     this.props.changeAmount(newValue)
@@ -23,7 +23,7 @@ class Keyboard extends Component {
   }
 
   removeDigit = () => {
-    const newValue = this.state.displayValue.length === 1 ? 0 : this.state.displayValue.slice(0, -1)
+    const newValue = this.state.displayValue.length === 1 ? '0' : this.state.displayValue.slice(0, -1)
 
     this.props.changeAmount(newValue)
     this.setState( {displayValue :  newValue} )

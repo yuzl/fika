@@ -3,7 +3,6 @@ import { observer, inject } from 'mobx-react'
 
 import NewExpense from '../components/newExpense/NewExpense'
 import PayerToggle from '../components/payerToggle/PayerToggle'
-import Keyboard from '../components/keyboard/Keyboard'
 
 import './app.scss'
 
