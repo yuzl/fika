@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 
+import PayerToggle from '../components/payerToggle/PayerToggle'
 import Keyboard from '../components/keyboard/Keyboard'
+
 import './app.scss'
 
 @inject(['user'], ['contacts'], ['expenses']) @observer
@@ -36,11 +38,9 @@ class App extends Component {
 
   render() {
 
-    // Render sobald Kontakte geladen wurden
-    // TODO Loading Screen gestalten
-
     return (
       <div id="app">
+        <PayerToggle color="c-1" />
         <Keyboard color="c-1" />
       </div>
     )
