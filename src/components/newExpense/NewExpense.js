@@ -27,7 +27,7 @@ class NewExpense extends Component {
   // Neue Ausgabe hinzufügen
   addNewExpense = () => {
       const payer = this.state.isPayer
-      const contactId = "usr_1f"
+      const contactId = this.props.activeContact
       const amount = this.state.amount
 
       // Unterscheiden wer bezahl hat
@@ -53,7 +53,7 @@ class NewExpense extends Component {
   render () {
     return (
       <div className="NewExpense">
-        <PayerToggle color={ this.props.color } name={ this.props.contacts.json[0].name } changePayer={ this.changePayer } />
+        <PayerToggle color={ this.props.color } name={ this.props.activeContact } changePayer={ this.changePayer } />
         <Amount amount={ this.state.amount } color={ this.props.color } />
         <Keyboard amount={ this.state.amount } color={ this.props.color } changeAmount={ this.changeAmount } addNewExpense={ this.addNewExpense }/>
       </div>

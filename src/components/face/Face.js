@@ -7,7 +7,7 @@ class Face extends Component {
   render () {
     return (
       <div className="face">
-          <div className="face-initial">{ this.props.initial }</div>
+          <div className="face-initial" onClick={() => this.props.setActiveContact(this.props.id)}>{ this.props.initial }</div>
       </div>
     )
   }

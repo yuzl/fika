@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 
 import NewExpense from '../components/newExpense/NewExpense'
+import ContactList from '../components/contactList/ContactList'
 
 import './app.scss'
 
@@ -11,14 +12,15 @@ class App extends Component {
   constructor(props) {
     super(props)
 
-    console.log("not useless")
-    // App für fred = usr_1f initialisieren (yuri= usr_2y, tilman= usr_3t)
+    // App initialisieren fred= usr_1f yuri= usr_2y tilman= usr_3t
     this.props.user
       .fetchUser("usr_2y")
     this.props.contacts
       .fetchContacts("usr_2y")
     this.props.expenses
       .fetchExpenses("usr_2y", "usr_1f")
+
+    this.state = { activeContact : "usr_1f" }
 
     /*
 
@@ -40,6 +42,10 @@ class App extends Component {
     */
   }
 
+  changeContact = (value) =>{
+    this.setState({ activeContact : value })
+  }
+
   render() {
 
     // Render sobald Daten geladen wurden
@@ -50,15 +56,15 @@ class App extends Component {
 
     return (
       <div id="app">
+        <ContactList changeContact={ this.changeContact } contacts={ this.props.contacts.json } user={ this.props.user } expenses={ this.props.expenses }/>
         <div>{ this.props.expenses.entries
           .reduce( (accumulator,currentValue) => {
-            let x = parseInt(currentValue[1].amount)
-            if(currentValue[1].payerId !== this.props.user.id) x = parseInt(currentValue[1].amount)*-1
+            let x = parseInt(currentValue[1].amount, 10)
+            if(currentValue[1].payerId !== this.props.user.id) x = parseInt(currentValue[1].amount, 10)*-1
             return accumulator + x;
           }, 0)
         }</div>
-        
-        <NewExpense color="c-1" user={ this.props.user } contacts={ this.props.contacts } expenses={ this.props.expenses }/>
+        <NewExpense color="c-1" user={ this.props.user } activeContact={ this.state.activeContact } expenses={ this.props.expenses }/>
     </div>
     )
   }
