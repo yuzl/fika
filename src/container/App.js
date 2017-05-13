@@ -3,6 +3,7 @@ import { observer, inject } from 'mobx-react'
 
 import NewExpense from '../components/newExpense/NewExpense'
 import ContactList from '../components/contactList/ContactList'
+import TotalExpenses from '../components/totalExpenses/TotalExpenses'
 
 import './app.scss'
 
@@ -11,10 +12,6 @@ class App extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      activeContact : "usr_1f",
-      activeColor : "c-1"
-    }
 
     // App initialisieren fred= usr_1f yuri= usr_2y tilman= usr_3t
     this.props.user
@@ -40,13 +37,7 @@ class App extends Component {
 
     return (
       <div id="app">
-        <div>{ this.props.expenses.entries
-          .reduce( (accumulator,currentValue) => {
-            let x = parseInt(currentValue[1].amount, 10)
-            if(currentValue[1].payerId !== this.props.user.id) x = parseInt(currentValue[1].amount, 10)*-1
-            return accumulator + x;
-          }, 0)
-        }</div>
+        <TotalExpenses user={ this.props.user } totalExpenses={ this.props.expenses.entries } />
         <ContactList changeContact={ this.changeContact } color={ this.props.contacts.activeContact.color } contacts={ this.props.contacts.json } user={ this.props.user } expenses={ this.props.expenses }/>
         <NewExpense color={ this.props.contacts.activeContact.color } user={ this.props.user } activeContact={ this.props.contacts.activeContact.name } expenses={ this.props.expenses }/>
     </div>
