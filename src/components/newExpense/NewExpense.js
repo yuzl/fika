@@ -53,9 +53,9 @@ class NewExpense extends Component {
   render () {
     return (
       <div className="NewExpense">
-        <PayerToggle color={ this.props.color } name={ this.props.activeContact.name } changePayer={ this.changePayer } />
-        <Amount amount={ this.state.amount } color={ this.props.color } changePayer={ this.changePayer } />
-        <Keyboard amount={ this.state.amount } color={ this.props.color } changeAmount={ this.changeAmount } addNewExpense={ this.addNewExpense }/>
+        <PayerToggle contactColor={ this.props.activeContact.color } contactName={ this.props.activeContact.name } changePayer={ this.changePayer } />
+        <Amount amount={ this.state.amount } contactColor={ this.props.activeContact.color } changePayer={ this.changePayer } />
+        <Keyboard amount={ this.state.amount } contactColor={ this.props.activeContact.color } changeAmount={ this.changeAmount } addNewExpense={ this.addNewExpense }/>
       </div>
     )
   }

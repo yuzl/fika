@@ -33,7 +33,7 @@ class Keyboard extends Component {
 
   render () {
     return (
-        <div className={"keyboard b" + this.props.color.substring(1) }>
+        <div className={"keyboard b" + this.props.contactColor.substring(1) }>
                 <div className="keyboard-numpad">
                     <div data-num="1" onClick={() => this.inputDigit(1)}>1</div>
                     <div data-num="2" onClick={() => this.inputDigit(2)}>2</div>

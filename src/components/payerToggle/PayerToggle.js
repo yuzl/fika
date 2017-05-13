@@ -29,7 +29,7 @@ class PayerToggle extends Component {
 
     return (
       <div className="payerToggle" onClick={ this.togglePayer }>
-      <BorrowerInfo hideGet={ this.state.hideGet }  hideGive={ this.state.hideGive } color={ this.props.color } name={ this.props.name }/>
+      <BorrowerInfo hideGet={ this.state.hideGet }  hideGive={ this.state.hideGive } contactColor={ this.props.contactColor } contactName={ this.props.contactName }/>
       </div>
     )
   }
