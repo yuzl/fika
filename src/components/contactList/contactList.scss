@@ -1,10 +1,14 @@
 @import '../../vars';
 
 .contactList {
-  padding-bottom: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  .face{
-    display: inline-block;
+  height: 30vh;
+  background: #eee;
+
+  .face {
     &:first-child {background: $c-1}
     &:nth-child(2) {background: $c-2}
   }
