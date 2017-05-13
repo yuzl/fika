@@ -6,16 +6,12 @@ import './contactList.scss'
 class ContactList extends Component {
 
   // Aktiver CONTACT mit entsprechenden Ausgaben
-  setActiveContact = (value) => {
-    const contactId = value
+  setActiveContact = (contactId) => {
 
     this.props.expenses
       .fetchExpenses(this.props.user.id, contactId)
 
-    this.props.changeContact(value)
-
-    this.props.color === "c-2" ?     this.props.changeColor("c-1") : this.props.changeColor("c-2")
-
+    this.props.changeContact(contactId)
   }
 
   render () {
