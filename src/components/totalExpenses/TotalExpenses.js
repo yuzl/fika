@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import BorrowerInfo from '../borrowerInfo/BorrowerInfo'
+import Amount from '../amount/Amount'
 
 
 import './totalExpenses.scss'
@@ -46,9 +47,7 @@ class TotalExpenses extends Component {
     return (
       <div className="totalExpenses">
         <BorrowerInfo hideGet={ this.state.hideGet }  hideGive={ this.state.hideGive } totalExpenses={ this.props.totalExpenses } contactColor={ this.props.contactColor } contactName={ this.props.contactName }/>
-        <div>
-        { this.calcTotalExpenses() }
-         </div>
+         <Amount amount={ this.calcTotalExpenses() } contactColor={ this.props.contactColor } changePayer={ this.changePayer } />
        </div>
 
     )
