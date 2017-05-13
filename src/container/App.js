@@ -25,12 +25,9 @@ class App extends Component {
       .fetchExpenses("usr_2y", "usr_1f")
   }
 
-  changeContact = (value) =>{
-    this.setState({ activeContact : value })
-  }
-
-  changeColor = (value) =>{
-    this.setState({ activeColor : value })
+  changeContact = (id) =>{
+    this.props.contacts
+      .setactiveContact(id)
   }
 
   render() {
@@ -50,8 +47,8 @@ class App extends Component {
             return accumulator + x;
           }, 0)
         }</div>
-        <ContactList changeContact={ this.changeContact } changeColor={ this.changeColor } color={ this.state.activeColor } contacts={ this.props.contacts.json } user={ this.props.user } expenses={ this.props.expenses }/>
-        <NewExpense color={ this.state.activeColor } user={ this.props.user } activeContact={ this.state.activeContact } expenses={ this.props.expenses }/>
+        <ContactList changeContact={ this.changeContact } color={ this.props.contacts.activeContact.color } contacts={ this.props.contacts.json } user={ this.props.user } expenses={ this.props.expenses }/>
+        <NewExpense color={ this.props.contacts.activeContact.color } user={ this.props.user } activeContact={ this.props.contacts.activeContact.name } expenses={ this.props.expenses }/>
     </div>
     )
   }

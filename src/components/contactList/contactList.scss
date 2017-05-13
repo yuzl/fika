@@ -5,7 +5,5 @@
 
   .face{
     display: inline-block;
-    &:first-child {background: $c-1}
-    &:nth-child(2) {background: $c-2}
   }
 }

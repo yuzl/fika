@@ -3,6 +3,7 @@ import { Fb } from '../Firebase';
 
 class Contacts {
   @observable all = []
+  @observable activeContact = {}
   @observable isLoaded = false
 
   fetchContacts = ( userId ) => {
@@ -23,12 +24,17 @@ class Contacts {
 
           // Starte App wenn Daten geladen
           if(key + 1 === user.val().contacts.length) {
+            this.activeContact = this.json[0]
             this.isLoaded = true
           }
         })
       })
     })
 
+  }
+
+  setactiveContact(newID){
+    this.activeContact = this.json.find(x => x.id === newID)
   }
 
   // Gibt Einträge als JS Objetc zurück (toJS macht aus MOBX ein JS Object)
