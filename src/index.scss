@@ -32,3 +32,19 @@ body {
 .c-3 {
   color: $c-3;
 }
+
+.snapScrolling {
+  position: absolute;
+  top:0;
+  width: 100vw;
+  height: 100vh;
+  overflow-y:auto;
+  overflow-x: hidden;
+
+  -webkit-overflow-scrolling: touch;
+
+  -webkit-scroll-snap-points-y: repeat(100%);
+  -webkit-scroll-snap-type: mandatory;
+  -webkit-scroll-snap-destination: 100% 0%;
+
+}
