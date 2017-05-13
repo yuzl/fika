@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import BorrowerInfo from '../borrowerInfo/BorrowerInfo'
+
 import './payerToggle.scss'
 
 class PayerToggle extends Component {
@@ -27,11 +29,7 @@ class PayerToggle extends Component {
 
     return (
       <div className="payerToggle" onClick={ this.togglePayer }>
-          <div className="payerToggle-inner">
-            <span className={"payerToggle-get " + this.state.hideGet}>Ich bekomme von</span>
-            <span className={"payerToggle-name " + this.props.color}>{ this.props.name }</span>
-            <span className={"payerToggle-give " + this.state.hideGive}>bekommt von mir</span>
-          </div>
+      <BorrowerInfo hideGet={ this.state.hideGet }  hideGive={ this.state.hideGive } color={ this.props.color } name={ this.props.name }/>
       </div>
     )
   }

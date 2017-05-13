@@ -1,9 +1,7 @@
 @import '../../vars';
 
 .contactList {
-  padding-bottom: 2em;
-
-  .face{
-    display: inline-block;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

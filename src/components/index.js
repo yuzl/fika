@@ -4,6 +4,7 @@ import NewExpense from './newExpense/NewExpense'
 import Expenses from './expenses/Expenses'
 import PayerToggle from './payerToggle/PayerToggle'
 import TotalExpenses from '../components/totalExpenses/TotalExpenses'
+import BorrowerInfo from '../components/borrowerInfo/BorrowerInfo'
 
 
 
@@ -13,5 +14,6 @@ export default {
   NewExpense,
   Expenses,
   PayerToggle,
-  TotalExpenses
+  TotalExpenses,
+  BorrowerInfo
 }
