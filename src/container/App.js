@@ -39,7 +39,7 @@ class App extends Component {
       <div id="app">
         <TotalExpenses user={ this.props.user } totalExpenses={ this.props.expenses.entries } />
         <ContactList changeContact={ this.changeContact } color={ this.props.contacts.activeContact.color } contacts={ this.props.contacts.json } user={ this.props.user } expenses={ this.props.expenses }/>
-        <NewExpense color={ this.props.contacts.activeContact.color } user={ this.props.user } activeContact={ this.props.contacts.activeContact.name } expenses={ this.props.expenses }/>
+        <NewExpense color={ this.props.contacts.activeContact.color } user={ this.props.user } activeContact={ this.props.contacts.activeContact } expenses={ this.props.expenses }/>
     </div>
     )
   }
