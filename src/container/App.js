@@ -22,7 +22,44 @@ class App extends Component {
       .fetchExpenses("usr_2y", "usr_1f")
   }
 
-  changeContact = (id) =>{
+  // Keylistener um User zu wechseln
+  componentWillMount() {
+    document.addEventListener("keydown", this._handleKeyDown.bind(this));
+  }
+
+  _handleKeyDown = (e) => {
+      switch (e.key) {
+        case "f":
+          this.props.user
+            .fetchUser("usr_1f")
+          this.props.contacts
+            .fetchContacts("usr_1f")
+          this.props.expenses
+            .fetchExpenses("usr_1f", "usr_2y")
+          break;
+        case "y":
+          this.props.user
+            .fetchUser("usr_2y")
+          this.props.contacts
+            .fetchContacts("usr_2y")
+          this.props.expenses
+            .fetchExpenses("usr_2y", "usr_1f")
+          break;
+        case "t":
+          this.props.user
+            .fetchUser("usr_3t")
+          this.props.contacts
+            .fetchContacts("usr_3t")
+          this.props.expenses
+            .fetchExpenses("usr_3t", "usr_1f")
+          break;
+          default:
+          break;
+      }
+
+  }
+
+  changeContact = (id) => {
     this.props.contacts
       .setactiveContact(id)
   }
