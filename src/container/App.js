@@ -30,6 +30,7 @@ class App extends Component {
   _handleKeyDown = (e) => {
       switch (e.key) {
         case "f":
+          console.log(">>> LOADING FRED");
           this.props.user
             .fetchUser("usr_1f")
           this.props.contacts
@@ -38,6 +39,7 @@ class App extends Component {
             .fetchExpenses("usr_1f", "usr_2y")
           break;
         case "y":
+        console.log(">>> LOADING YURI");
           this.props.user
             .fetchUser("usr_2y")
           this.props.contacts
@@ -46,6 +48,7 @@ class App extends Component {
             .fetchExpenses("usr_2y", "usr_1f")
           break;
         case "t":
+          console.log(">>> LOADING TILMAN");
           this.props.user
             .fetchUser("usr_3t")
           this.props.contacts
