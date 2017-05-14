@@ -5,6 +5,7 @@ import { h } from '../StoreHelpers'
 
 class Expenses {
   @observable all = {}
+  @observable total = 0
   @observable isLoaded = false
 
   @computed get json() {
@@ -26,6 +27,14 @@ class Expenses {
 
     Fb.expenses.child(expenseId).on('value', (snap) =>{
       this.all = snap.val()
+
+      this.total = this.entries
+        .reduce( (sum,currentValue) => {
+          let amount = parseInt(currentValue[1].amount, 10)
+          if(currentValue[1].payerId !== userId) amount = parseInt(currentValue[1].amount, 10)*-1
+          return sum + amount;
+        }, 0)
+
       this.isLoaded = true
     })
 

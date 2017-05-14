@@ -12,11 +12,20 @@ class PayerToggle extends Component {
     this.state = { hideGet : '', hideGive : 'hidden' };
   }
 
-  togglePayer = (e) => {
-    e.preventDefault()
+  togglePayer = () => {
+    if(this.props.changePayer()) this.props.changePayer()
 
-    this.props.changePayer()
+    this.setHideGet()
+  }
 
+  componentWillReceiveProps(nextProps){
+
+    if(nextProps.isPayer !== this.props.isPayer ) {
+      this.setHideGet()
+    }
+  }
+
+  setHideGet = () => {
     if(this.state.hideGet === 'hidden') {
       this.setState ({ hideGive : 'hidden', hideGet : '' });
     } else {
@@ -24,12 +33,11 @@ class PayerToggle extends Component {
     }
   }
 
-
   render () {
 
     return (
-      <div className="payerToggle" onClick={ this.togglePayer }>
-      <BorrowerInfo hideGet={ this.state.hideGet }  hideGive={ this.state.hideGive } contactColor={ this.props.contactColor } contactName={ this.props.contactName }/>
+      <div className="payerToggle" onClick={() => this.togglePayer() }>
+        <BorrowerInfo hideGet={ this.state.hideGet }  hideGive={ this.state.hideGive } contactColor={ this.props.contactColor } contactName={ this.props.contactName }/>
       </div>
     )
   }

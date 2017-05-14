@@ -11,45 +11,35 @@ class TotalExpenses extends Component {
   constructor(props) {
     super(props)
 
-
-    if(this.calcTotalExpenses() > 0 ) {
-      this.state =  { hideGive : 'hidden', hideGet : '' };
-    } else {
-      this.state = { hideGive : '', hideGet : 'hidden' };
-    }
-
+    // State initialise
+    this.state = { hideGive : '', hideGet : 'hidden' }
   }
 
-  setBorrower = () => {
+  // Set State beim ersten Rendern
+  componentWillMount() {
+    this.changeBorrower(this.props.totalExpenses)
+  }
 
-    if(this.calcTotalExpenses() > 0 ) {
+  // State ändern wenn props geändert werden
+  componentWillReceiveProps(nextProps){
+    this.changeBorrower(nextProps.totalExpenses)
+  }
+
+  changeBorrower = (totalExpenses) => {
+    if(totalExpenses > 0 ) {
       this.setState ({ hideGive : 'hidden', hideGet : '' });
     } else {
       this.setState ({ hideGive : '', hideGet : 'hidden' });
     }
   }
 
-
-  calcTotalExpenses = () =>  {
-
-    let totalExpenses = this.props.totalExpenses
-      .reduce( (accumulator,currentValue) => {
-        let x = parseInt(currentValue[1].amount, 10)
-        if(currentValue[1].payerId !== this.props.user.id) x = parseInt(currentValue[1].amount, 10)*-1
-        return accumulator + x;
-      }, 0)
-
-    return totalExpenses
-  }
-
   render () {
 
     return (
       <div className="totalExpenses">
-        <BorrowerInfo hideGet={ this.state.hideGet }  hideGive={ this.state.hideGive } totalExpenses={ this.props.totalExpenses } contactColor={ this.props.contactColor } contactName={ this.props.contactName }/>
-         <Amount amount={ this.calcTotalExpenses() } contactColor={ this.props.contactColor } changePayer={ this.changePayer } />
-       </div>
-
+         <BorrowerInfo hideGet={ this.state.hideGet }  hideGive={ this.state.hideGive } totalExpenses={ this.props.totalExpenses } contactColor={ this.props.contactColor } contactName={ this.props.contactName }/>
+         <Amount amount={ this.props.totalExpenses } contactColor={ this.props.contactColor } changePayer={ this.changePayer } />
+     </div>
     )
   }
 }
