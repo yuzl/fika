@@ -24,7 +24,7 @@ class App extends Component {
 
   // Keylistener um User zu wechseln
   componentWillMount() {
-    document.addEventListener("keydown", this._handleKeyDown.bind(this));
+    window.addEventListener("keydown", this._handleKeyDown.bind(this));
   }
 
   _handleKeyDown = (e) => {
