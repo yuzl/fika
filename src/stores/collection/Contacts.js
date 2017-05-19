@@ -1,6 +1,11 @@
 import { observable, computed, toJS } from 'mobx';
 import { Fb } from '../Firebase';
 
+const COLORS = {
+  'c-1': '#E9435C',
+  'c-2': '#4381E9'
+};
+
 class Contacts {
   @observable all = []
   @observable activeContact = {}
@@ -19,6 +24,7 @@ class Contacts {
         Fb.contacts.child(data).once('value', (snap) => {
           let contact = snap.val()
           contact.id = data
+          contact.hex = COLORS[contact.color] || '#ccc';
 
           this.all.push( contact )
 

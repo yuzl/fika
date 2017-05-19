@@ -1,10 +1,54 @@
 import React, { Component } from 'react'
+import styled from 'styled-components';
 
-import './keyboard.scss'
+// import GLOBALS from '../../globals';
+
+const StyledKeyboard = styled.div`
+    width: 100vw;
+    color: #fff;
+    text-align: center;
+    background: ${props => props.base};
+
+    /* &.open {
+        transform: translate3d(0,0,0);
+    } */
+
+    /* &-numpad {
+        width: 80%;
+        margin: 0 auto;
+        padding: 15px 0;
+        font-size: 30px;
+
+        div {
+            width: 33.3%;
+            padding: 10px 0;
+            float: left;
+            cursor: pointer;
+
+            &.keyboard-numpad-delete {
+                opacity: 0.5;
+            }
+        }
+
+        &:after {
+            content:'';
+            display: block;
+            clear: both;
+        }
+    }
+    &-save {
+        padding: 15px 0;
+        cursor: pointer;
+    } */
+`;
+
+StyledKeyboard.displayName = 'StyledKeyboard';
+
 
 class Keyboard extends Component {
   constructor(props) {
     super(props)
+    // console.log(props);
 
     this.state = {
       displayValue: '0',
@@ -33,7 +77,7 @@ class Keyboard extends Component {
 
   render () {
     return (
-        <div className={"keyboard b" + this.props.contactColor.substring(1) }>
+        <StyledKeyboard base={this.props.contactColor}>
                 <div className="keyboard-numpad">
                     <div data-num="1" onClick={() => this.inputDigit(1)}>1</div>
                     <div data-num="2" onClick={() => this.inputDigit(2)}>2</div>
@@ -48,7 +92,7 @@ class Keyboard extends Component {
                     <div data-num="0" onClick={() => this.inputDigit(0)}>0</div>
                     <div onClick={() => this.addExpense() }>Ok</div>
                 </div>
-        </div>
+        </StyledKeyboard>
     )
   }
 }
