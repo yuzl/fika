@@ -55,7 +55,12 @@ class NewExpense extends Component {
       <div className="NewExpense">
         <PayerToggle isPayer={ this.state.isPayer } contactColor={ this.props.activeContact.color } contactName={ this.props.activeContact.name } changePayer={ this.changePayer } />
         <Amount amount={ this.state.amount } contactColor={ this.props.activeContact.color } changePayer={ this.changePayer } />
-        <Keyboard amount={ this.state.amount } contactColor={ this.props.activeContact.color } changeAmount={ this.changeAmount } addNewExpense={ this.addNewExpense }/>
+        <Keyboard
+            amount={ this.state.amount }
+            contactColor={ this.props.activeContact.hex } 
+            changeAmount={ this.changeAmount } 
+            addNewExpense={ this.addNewExpense }
+            />
       </div>
     )
   }
