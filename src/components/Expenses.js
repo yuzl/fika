@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 
-import './expenses.scss'
 
 class Expenses extends Component {
   render () {

@@ -3,7 +3,8 @@ import { Fb } from '../Firebase';
 
 const COLORS = {
   'c-1': '#E9435C',
-  'c-2': '#4381E9'
+  'c-2': '#904DE9',
+  'c-3': '#4381E9'
 };
 
 class Contacts {
@@ -24,7 +25,7 @@ class Contacts {
         Fb.contacts.child(data).once('value', (snap) => {
           let contact = snap.val()
           contact.id = data
-          contact.hex = COLORS[contact.color] || '#ccc';
+          contact.color = COLORS[contact.color] || '#ccc';
 
           this.all.push( contact )
 

@@ -1,11 +1,22 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
+import styled from 'styled-components';
 
-import NewExpense from '../components/newExpense/NewExpense'
-import ContactList from '../components/contactList/ContactList'
-import TotalExpenses from '../components/totalExpenses/TotalExpenses'
+import NewExpense from '../components/NewExpense'
+import ContactList from '../components/ContactList'
+import TotalExpenses from '../components/TotalExpenses'
 
-import './app.scss'
+const StyledApp = styled.div`
+  overflow: hidden;
+`;
+
+const StyledLoading = styled.div`
+  margin-top: 5em;
+  text-align: center;
+`;
+
+StyledApp.displayName = 'StyledApp';
+StyledLoading.displayName = 'StyledLoading';
 
 @inject(['user'], ['contacts'], ['expenses']) @observer
 class App extends Component {
@@ -72,15 +83,26 @@ class App extends Component {
     // Render sobald Daten geladen wurden
     // TODO Loading Screen gestalten
     if (!this.props.contacts.isLoaded) {
-        return <div className="loading">Loading...</div>
+        return <StyledLoading>Loading...</StyledLoading>
     }
 
     return (
-      <div id="app" className="snapScrolling">
-        <TotalExpenses user={ this.props.user } totalExpenses={ this.props.expenses.total } contactName={ this.props.contacts.activeContact.name } contactColor={ this.props.contacts.activeContact.color }  />
-        <ContactList changeContact={ this.changeContact } color={ this.props.contacts.activeContact.color } contacts={ this.props.contacts.json } user={ this.props.user } expenses={ this.props.expenses }/>
-        <NewExpense user={ this.props.user } activeContact={ this.props.contacts.activeContact } expenses={ this.props.expenses }/>
-    </div>
+      <StyledApp>
+        <TotalExpenses
+            user={ this.props.user }
+            totalExpenses={ this.props.expenses.total }
+            contactName={ this.props.contacts.activeContact.name }
+            contactColor={ this.props.contacts.activeContact.color } />
+        <ContactList
+            changeContact={ this.changeContact }
+            contacts={ this.props.contacts.json }
+            user={ this.props.user }
+            expenses={ this.props.expenses } />
+        <NewExpense
+            user={ this.props.user }
+            activeContact={ this.props.contacts.activeContact }
+            expenses={ this.props.expenses } />
+      </StyledApp>
     )
   }
 }

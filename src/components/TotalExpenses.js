@@ -1,10 +1,16 @@
 import React, { Component } from 'react'
+import styled from 'styled-components';
 
-import BorrowerInfo from '../borrowerInfo/BorrowerInfo'
-import Amount from '../amount/Amount'
+import BorrowerInfo from './BorrowerInfo'
+import Amount from './Amount'
 
+const StyledTotalExpenses = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 10vh;
+`;
 
-import './totalExpenses.scss'
+StyledTotalExpenses.displayName = 'StyledTotalExpenses';
 
 class TotalExpenses extends Component {
 
@@ -36,10 +42,10 @@ class TotalExpenses extends Component {
   render () {
 
     return (
-      <div className="totalExpenses">
+      <StyledTotalExpenses>
          <BorrowerInfo hideGet={ this.state.hideGet }  hideGive={ this.state.hideGive } totalExpenses={ this.props.totalExpenses } contactColor={ this.props.contactColor } contactName={ this.props.contactName }/>
          <Amount amount={ this.props.totalExpenses } contactColor={ this.props.contactColor } changePayer={ this.changePayer } />
-     </div>
+     </StyledTotalExpenses>
     )
   }
 }

@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
+import styled from 'styled-components';
 
-import BorrowerInfo from '../borrowerInfo/BorrowerInfo'
+import BorrowerInfo from './BorrowerInfo'
 
-import './payerToggle.scss'
+const StyledPayerToggle = styled.div`
+
+`;
+StyledPayerToggle.displayName = 'StyledPayerToggle';
 
 class PayerToggle extends Component {
 
@@ -36,9 +40,9 @@ class PayerToggle extends Component {
   render () {
 
     return (
-      <div className="payerToggle" onClick={() => this.togglePayer() }>
+      <StyledPayerToggle onClick={() => this.togglePayer() }>
         <BorrowerInfo hideGet={ this.state.hideGet }  hideGive={ this.state.hideGive } contactColor={ this.props.contactColor } contactName={ this.props.contactName }/>
-      </div>
+      </StyledPayerToggle>
     )
   }
 }

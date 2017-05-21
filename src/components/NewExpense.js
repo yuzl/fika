@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
-import Amount from '../amount/Amount'
-import Keyboard from '../keyboard/Keyboard'
-import PayerToggle from '../payerToggle/PayerToggle'
+import Amount from './Amount'
+import Keyboard from './Keyboard'
+import PayerToggle from './PayerToggle'
 
-import './NewExpense.scss'
+const StyledNewExpense = styled.div`
+`;
+
+StyledNewExpense.displayName = 'StyledNewExpense';
 
 class NewExpense extends Component {
   constructor(props){
@@ -52,16 +56,27 @@ class NewExpense extends Component {
 
   render () {
     return (
-      <div className="NewExpense">
-        <PayerToggle isPayer={ this.state.isPayer } contactColor={ this.props.activeContact.color } contactName={ this.props.activeContact.name } changePayer={ this.changePayer } />
-        <Amount amount={ this.state.amount } contactColor={ this.props.activeContact.color } changePayer={ this.changePayer } />
+      <StyledNewExpense>
+
+        <PayerToggle
+            isPayer={ this.state.isPayer }
+            contactColor={ this.props.activeContact.color }
+            contactName={ this.props.activeContact.name }
+            changePayer={ this.changePayer } />
+
+        <Amount
+            amount={ this.state.amount }
+            contactColor={ this.props.activeContact.color }
+            changePayer={ this.changePayer } />
+
         <Keyboard
             amount={ this.state.amount }
-            contactColor={ this.props.activeContact.hex } 
-            changeAmount={ this.changeAmount } 
+            contactColor={ this.props.activeContact.color }
+            changeAmount={ this.changeAmount }
             addNewExpense={ this.addNewExpense }
             />
-      </div>
+
+      </StyledNewExpense>
     )
   }
 }

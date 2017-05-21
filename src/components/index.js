@@ -1,10 +1,10 @@
-import Face from './face/Face'
-import ContactList from './contactList/ContactList'
-import NewExpense from './newExpense/NewExpense'
-import Expenses from './expenses/Expenses'
-import PayerToggle from './payerToggle/PayerToggle'
-import TotalExpenses from '../components/totalExpenses/TotalExpenses'
-import BorrowerInfo from '../components/borrowerInfo/BorrowerInfo'
+import Face from './Face'
+import ContactList from './ContactList'
+import NewExpense from './NewExpense'
+import Expenses from './Expenses'
+import PayerToggle from './PayerToggle'
+import TotalExpenses from '../TotalExpenses'
+import BorrowerInfo from '../BorrowerInfo'
 
 
 
