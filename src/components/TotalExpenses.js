@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
 
-import BorrowerInfo from './BorrowerInfo'
+import PayerInfo from './PayerInfo'
 import Amount from './Amount'
 
 const StyledTotalExpenses = styled.div`
@@ -32,19 +32,22 @@ class TotalExpenses extends Component {
   }
 
   changeBorrower = (totalExpenses) => {
-    if(totalExpenses > 0 ) {
-      this.setState ({ hideGive : 'hidden', hideGet : '' });
-    } else {
-      this.setState ({ hideGive : '', hideGet : 'hidden' });
-    }
   }
 
   render () {
 
     return (
       <StyledTotalExpenses>
-         <BorrowerInfo hideGet={ this.state.hideGet }  hideGive={ this.state.hideGive } totalExpenses={ this.props.totalExpenses } contactColor={ this.props.contactColor } contactName={ this.props.contactName }/>
-         <Amount amount={ this.props.totalExpenses } contactColor={ this.props.contactColor } changePayer={ this.changePayer } />
+         <PayerInfo
+            totalExpenses={ this.props.totalExpenses }
+            contactColor={ this.props.contactColor }
+            contactName={ this.props.contactName }/>
+
+         <Amount
+            amount={ this.props.totalExpenses }
+            contactColor={ this.props.contactColor }
+            changePayer={ this.changePayer } />
+
      </StyledTotalExpenses>
     )
   }

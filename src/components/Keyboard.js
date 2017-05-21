@@ -18,7 +18,6 @@ const StyledKeyboardDigit = styled.div`
 
   align-items: center;
   justify-content: center;
-  cursor: pointer;
 
   color: #fff;
   font-size: 30px;

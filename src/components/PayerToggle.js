@@ -1,39 +1,30 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
 
-import BorrowerInfo from './BorrowerInfo'
+import PayerInfo from './PayerInfo'
 
-const StyledPayerToggle = styled.div`
-
-`;
+const StyledPayerToggle = styled.div``;
 StyledPayerToggle.displayName = 'StyledPayerToggle';
+
 
 class PayerToggle extends Component {
 
-  constructor(props) {
+  constructor(props){
     super(props)
 
-    this.state = { hideGet : '', hideGive : 'hidden' };
+    this.state = {
+      isPayer : this.props.isPayer
+    }
   }
 
   togglePayer = () => {
     if(this.props.changePayer()) this.props.changePayer()
-
-    this.setHideGet()
   }
 
   componentWillReceiveProps(nextProps){
-
     if(nextProps.isPayer !== this.props.isPayer ) {
-      this.setHideGet()
-    }
-  }
+        this.setState({isPayer : nextProps.isPayer})
 
-  setHideGet = () => {
-    if(this.state.hideGet === 'hidden') {
-      this.setState ({ hideGive : 'hidden', hideGet : '' });
-    } else {
-      this.setState ({ hideGive : '', hideGet : 'hidden' });
     }
   }
 
@@ -41,7 +32,12 @@ class PayerToggle extends Component {
 
     return (
       <StyledPayerToggle onClick={() => this.togglePayer() }>
-        <BorrowerInfo hideGet={ this.state.hideGet }  hideGive={ this.state.hideGive } contactColor={ this.props.contactColor } contactName={ this.props.contactName }/>
+
+        <PayerInfo
+            isPayer={ this.state.isPayer }
+            contactColor={ this.props.contactColor }
+            contactName={ this.props.contactName } />
+
       </StyledPayerToggle>
     )
   }
