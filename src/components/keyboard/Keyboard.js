@@ -1,48 +1,32 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
 
-// import GLOBALS from '../../globals';
-
 const StyledKeyboard = styled.div`
-    width: 100vw;
-    color: #fff;
-    text-align: center;
-    background: ${props => props.base};
+  display: flex;
+  flex-wrap: wrap;
 
-    /* &.open {
-        transform: translate3d(0,0,0);
-    } */
+  width: 100vw;
+  height: 40vh;
 
-    /* &-numpad {
-        width: 80%;
-        margin: 0 auto;
-        padding: 15px 0;
-        font-size: 30px;
+  background: ${props => props.color};
+`;
 
-        div {
-            width: 33.3%;
-            padding: 10px 0;
-            float: left;
-            cursor: pointer;
+const StyledKeyboardDigit = styled.div`
+  display: flex;
+  flex-basis: 33.3vw;
+  padding-top: .3em;
 
-            &.keyboard-numpad-delete {
-                opacity: 0.5;
-            }
-        }
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 
-        &:after {
-            content:'';
-            display: block;
-            clear: both;
-        }
-    }
-    &-save {
-        padding: 15px 0;
-        cursor: pointer;
-    } */
+  color: #fff;
+  font-size: 30px;
+
 `;
 
 StyledKeyboard.displayName = 'StyledKeyboard';
+StyledKeyboardDigit.displayName = 'StyledKeyboardDigit';
 
 
 class Keyboard extends Component {
@@ -77,21 +61,19 @@ class Keyboard extends Component {
 
   render () {
     return (
-        <StyledKeyboard base={this.props.contactColor}>
-                <div className="keyboard-numpad">
-                    <div data-num="1" onClick={() => this.inputDigit(1)}>1</div>
-                    <div data-num="2" onClick={() => this.inputDigit(2)}>2</div>
-                    <div data-num="3" onClick={() => this.inputDigit(3)}>3</div>
-                    <div data-num="4" onClick={() => this.inputDigit(4)}>4</div>
-                    <div data-num="5" onClick={() => this.inputDigit(5)}>5</div>
-                    <div data-num="6" onClick={() => this.inputDigit(6)}>6</div>
-                    <div data-num="7" onClick={() => this.inputDigit(7)}>7</div>
-                    <div data-num="8" onClick={() => this.inputDigit(8)}>8</div>
-                    <div data-num="9" onClick={() => this.inputDigit(9)}>9</div>
-                    <div onClick={() => this.removeDigit()}>&larr;</div>
-                    <div data-num="0" onClick={() => this.inputDigit(0)}>0</div>
-                    <div onClick={() => this.addExpense() }>Ok</div>
-                </div>
+        <StyledKeyboard color={this.props.contactColor}>
+          <StyledKeyboardDigit data-num="1" onClick={() => this.inputDigit(1)}>1</StyledKeyboardDigit>
+          <StyledKeyboardDigit data-num="2" onClick={() => this.inputDigit(2)}>2</StyledKeyboardDigit>
+          <StyledKeyboardDigit data-num="3" onClick={() => this.inputDigit(3)}>3</StyledKeyboardDigit>
+          <StyledKeyboardDigit data-num="4" onClick={() => this.inputDigit(4)}>4</StyledKeyboardDigit>
+          <StyledKeyboardDigit data-num="5" onClick={() => this.inputDigit(5)}>5</StyledKeyboardDigit>
+          <StyledKeyboardDigit data-num="6" onClick={() => this.inputDigit(6)}>6</StyledKeyboardDigit>
+          <StyledKeyboardDigit data-num="7" onClick={() => this.inputDigit(7)}>7</StyledKeyboardDigit>
+          <StyledKeyboardDigit data-num="8" onClick={() => this.inputDigit(8)}>8</StyledKeyboardDigit>
+          <StyledKeyboardDigit data-num="9" onClick={() => this.inputDigit(9)}>9</StyledKeyboardDigit>
+          <StyledKeyboardDigit onClick={() => this.removeDigit()}>&larr;</StyledKeyboardDigit>
+          <StyledKeyboardDigit data-num="0" onClick={() => this.inputDigit(0)}>0</StyledKeyboardDigit>
+          <StyledKeyboardDigit onClick={() => this.addExpense() }>Ok</StyledKeyboardDigit>
         </StyledKeyboard>
     )
   }
