@@ -1,10 +1,12 @@
 import { observable, computed, toJS } from 'mobx';
 import { Fb } from '../Firebase';
 
+import GLOBALS from '../../globals.js'
+
 const COLORS = {
-  'c-1': '#E9435C',
-  'c-2': '#904DE9',
-  'c-3': '#4381E9'
+  'c-1': GLOBALS["C_1"],
+  'c-2': GLOBALS["C_2"],
+  'c-3': GLOBALS["C_3"]
 };
 
 class Contacts {
