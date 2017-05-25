@@ -1,6 +1,10 @@
 @import './normalize';
 @import './vars';
 
+html {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
 
 body {
   margin: 0;
