@@ -3,10 +3,6 @@ import styled from 'styled-components';
 
 import PayerInfo from './PayerInfo'
 
-const StyledPayerToggle = styled.div``;
-StyledPayerToggle.displayName = 'StyledPayerToggle';
-
-
 class PayerToggle extends Component {
 
   constructor(props){
@@ -24,21 +20,18 @@ class PayerToggle extends Component {
   componentWillReceiveProps(nextProps){
     if(nextProps.isBorrower !== this.props.isBorrower ) {
         this.setState({isBorrower : nextProps.isBorrower})
-
     }
   }
 
   render () {
 
     return (
-      <StyledPayerToggle onClick={() => this.togglePayer() }>
-
+      <div onClick={() => this.togglePayer() }>
         <PayerInfo
             isBorrower={ this.state.isBorrower }
             contactColor={ this.props.contactColor }
             contactName={ this.props.contactName } />
-
-      </StyledPayerToggle>
+      </div>
     )
   }
 }
