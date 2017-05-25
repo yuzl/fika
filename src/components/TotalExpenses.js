@@ -18,20 +18,22 @@ class TotalExpenses extends Component {
     super(props)
 
     // State initialise
-    this.state = { hideGive : '', hideGet : 'hidden' }
+    this.state = { isBorrower : false }
   }
 
   // Set State beim ersten Rendern
   componentWillMount() {
-    this.changeBorrower(this.props.totalExpenses)
+    this.isBorrower(this.props.totalExpenses)
   }
 
   // State ändern wenn props geändert werden
   componentWillReceiveProps(nextProps){
-    this.changeBorrower(nextProps.totalExpenses)
+    this.isBorrower(nextProps.totalExpenses)
   }
 
-  changeBorrower = (totalExpenses) => {
+  isBorrower = (totalExpenses) => {
+    const isBorrower = totalExpenses >= 0 ? true : false
+    this.setState( {isBorrower :  isBorrower} )
   }
 
   render () {
@@ -41,7 +43,9 @@ class TotalExpenses extends Component {
          <PayerInfo
             totalExpenses={ this.props.totalExpenses }
             contactColor={ this.props.contactColor }
-            contactName={ this.props.contactName }/>
+            contactName={ this.props.contactName }
+            isBorrower={ this.state.isBorrower }
+          />
 
          <Amount
             amount={ this.props.totalExpenses }

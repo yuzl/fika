@@ -1,16 +1,14 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
+
+const opacityChooser = (isBorrower) => {
+  return isBorrower? [1,0] : [0,1]
+}
+
 const StyledPayerInfo = styled.div`
   overflow: hidden;
   text-align: center;
-
-  span {
-    display: inline-block;
-    margin: 0;
-    height: 1em;
-    transition: all $t-short $t-easing;
-  }
 `;
 
 const StyledContactName = styled.span`
@@ -20,13 +18,17 @@ const StyledContactName = styled.span`
 `;
 
 const StyledPayerPhrase = styled.span`
+  display: inline-block;
+  margin: 0;
+  height: 1em;
+  transition: all $t-short $t-easing;
 
   &:first-of-type {
-    opacity: 0;
+    opacity: ${props => opacityChooser(props.isBorrower)[0]};
   }
 
   &:last-of-type {
-    opacity: 1;
+    opacity: ${props => opacityChooser(props.isBorrower)[1]};
   }
 `;
 
@@ -39,12 +41,11 @@ class PayerInfo extends Component {
 
   render () {
       return (
-        <StyledPayerInfo
-          isPayer={ this.props.isPayer }>
+        <StyledPayerInfo>
 
-          <StyledPayerPhrase>Ich bekomme von</StyledPayerPhrase>
+          <StyledPayerPhrase isBorrower={ this.props.isBorrower }>Ich bekomme von</StyledPayerPhrase>
           <StyledContactName color={ this.props.contactColor }>{ this.props.contactName }</StyledContactName>
-          <StyledPayerPhrase>bekommt von mir</StyledPayerPhrase>
+          <StyledPayerPhrase isBorrower={ this.props.isBorrower }>bekommt von mir</StyledPayerPhrase>
 
         </StyledPayerInfo>
       )

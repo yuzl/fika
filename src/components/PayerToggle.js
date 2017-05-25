@@ -13,7 +13,7 @@ class PayerToggle extends Component {
     super(props)
 
     this.state = {
-      isPayer : this.props.isPayer
+      isBorrower : this.props.isBorrower
     }
   }
 
@@ -22,8 +22,8 @@ class PayerToggle extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    if(nextProps.isPayer !== this.props.isPayer ) {
-        this.setState({isPayer : nextProps.isPayer})
+    if(nextProps.isBorrower !== this.props.isBorrower ) {
+        this.setState({isBorrower : nextProps.isBorrower})
 
     }
   }
@@ -34,7 +34,7 @@ class PayerToggle extends Component {
       <StyledPayerToggle onClick={() => this.togglePayer() }>
 
         <PayerInfo
-            isPayer={ this.state.isPayer }
+            isBorrower={ this.state.isBorrower }
             contactColor={ this.props.contactColor }
             contactName={ this.props.contactName } />
 

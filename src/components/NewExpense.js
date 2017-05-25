@@ -16,7 +16,7 @@ class NewExpense extends Component {
 
     this.state = {
       amount : 0,
-      isPayer : true
+      isBorrower : true
     }
   }
 
@@ -25,12 +25,12 @@ class NewExpense extends Component {
   }
 
   changePayer = () => {
-    this.setState({isPayer : !this.state.isPayer})
+    this.setState({isBorrower : !this.state.isBorrower})
   }
 
   // Neue Ausgabe hinzufügen
   addNewExpense = () => {
-      const payer = this.state.isPayer
+      const payer = this.state.isBorrower
       const contactId = this.props.activeContact.id
       const amount = this.state.amount
 
@@ -59,7 +59,7 @@ class NewExpense extends Component {
       <StyledNewExpense>
 
         <PayerToggle
-            isPayer={ this.state.isPayer }
+            isBorrower={ this.state.isBorrower }
             contactColor={ this.props.activeContact.color }
             contactName={ this.props.activeContact.name }
             changePayer={ this.changePayer } />
