@@ -1,22 +1,22 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 import NewExpense from '../components/NewExpense'
 import ContactList from '../components/ContactList'
 import TotalExpenses from '../components/TotalExpenses'
 
 const StyledApp = styled.div`
-  overflow: hidden;
-`;
+  overflow: hidden
+`
 
 const StyledLoading = styled.div`
-  margin-top: 5em;
-  text-align: center;
-`;
+  margin-top: 5em
+  text-align: center
+`
 
-StyledApp.displayName = 'StyledApp';
-StyledLoading.displayName = 'StyledLoading';
+StyledApp.displayName = 'StyledApp'
+StyledLoading.displayName = 'StyledLoading'
 
 @inject(['user'], ['contacts'], ['expenses']) @observer
 class App extends Component {
@@ -34,120 +34,129 @@ class App extends Component {
 
     this.state = {
       top: 0,
-      velocity: 0,
       timeOfLastDragEvent: 0,
       touchStartY: 0,
       prevTouchY: 0,
       beingTouched: false,
-      height: 0,
-      intervalId: null
+      intervalId: null,
+      showExpenses: false
     }
   }
 
   // Keylistener um User zu wechseln
   componentWillMount() {
-    window.addEventListener("keydown", this._handleKeyDown.bind(this));
+    window.addEventListener("keydown", this._handleKeyDown.bind(this))
   }
 
-  _handleKeyDown = (e) => {
+  _handleKeyDown(e) {
       switch (e.key) {
         case "f":
-          console.log(">>> LOADING FRED");
+          console.log(">>> LOADING FRED")
           this.props.user
             .fetchUser("usr_1f")
           this.props.contacts
             .fetchContacts("usr_1f")
           this.props.expenses
             .fetchExpenses("usr_1f", "usr_2y")
-          break;
+          break
         case "y":
-        console.log(">>> LOADING YURI");
+        console.log(">>> LOADING YURI")
           this.props.user
             .fetchUser("usr_2y")
           this.props.contacts
             .fetchContacts("usr_2y")
           this.props.expenses
             .fetchExpenses("usr_2y", "usr_1f")
-          break;
+          break
         case "t":
-          console.log(">>> LOADING TILMAN");
+          console.log(">>> LOADING TILMAN")
           this.props.user
             .fetchUser("usr_3t")
           this.props.contacts
             .fetchContacts("usr_3t")
           this.props.expenses
             .fetchExpenses("usr_3t", "usr_1f")
-          break;
+          break
           default:
-          break;
+          break
       }
 
   }
 
-  changeContact = (id) => {
+  changeContact= (id) => {
     this.props.contacts
       .setactiveContact(id)
   }
 
 
   /***************************
-   ******* HANDLE SWIPE ********
+   ******* HANDLE SWIPE DOWN *
    ***************************/
+
+   _handleTouchStart(touchStartEvent) {
+     touchStartEvent.preventDefault()
+     this.handleStart(touchStartEvent.targetTouches[0].clientY)
+   }
+
+   _handleTouchMove(touchMoveEvent) {
+     this.handleMove(touchMoveEvent.targetTouches[0].clientY)
+   }
+
+   _handleTouchEnd() {
+     this.handleEnd()
+   }
 
   handleStart(clientY) {
     if (this.state.intervalId !== null) {
-      window.clearInterval(this.state.intervalId);
+      window.clearInterval(this.state.intervalId)
     }
     this.setState({
-      velocity: 0,
       timeOfLastDragEvent: Date.now(),
       touchStartY: clientY,
       beingTouched: true,
       intervalId: null
-    });
+    })
   }
 
   handleMove(clientY) {
     if (this.state.beingTouched) {
-      const touchY = clientY;
-      const currTime = Date.now();
-      const elapsed = currTime - this.state.timeOfLastDragEvent;
-      const velocity = 20 * (touchY - this.state.prevTouchY) / elapsed;
-      let deltaY = touchY - this.state.touchStartY;
-      if (deltaY > 150) {
-        console.log("distance okay", deltaY);
+      const touchY = clientY
+      const currTime = Date.now()
+      const elapsed = currTime - this.state.timeOfLastDragEvent
+      const distance = 150
+
+      // TODO: Schnellen Swipe erkennen
+      const velocity = 20 * (touchY - this.state.prevTouchY) / elapsed
+      console.log("speed of drag:", velocity)
+
+      let deltaY = touchY - this.state.touchStartY
+      if (deltaY > distance) {
+        console.log("distance okay +:", deltaY)
+        this.setState({ showExpenses : true })
+      } else if (deltaY*-1 > distance) {
+        console.log("distance okay -:", deltaY, distance*-1)
+        this.setState({ showExpenses : false })
       } else if (deltaY > 0) {
-        console.log("distance too short", deltaY);
-        deltaY = 0;
+        console.log("distance too short:", deltaY)
+        deltaY = 0
       }
       this.setState({
         top: deltaY,
-        velocity,
         timeOfLastDragEvent: currTime,
         prevTouchY: touchY
-      });
+      })
     }
   }
 
   handleEnd() {
     this.setState({
-      velocity: this.state.velocity,
       touchStartY: 0,
       beingTouched: false
-    });
+    })
   }
 
-  handleTouchStart(touchStartEvent) {
-    touchStartEvent.preventDefault();
-    this.handleStart(touchStartEvent.targetTouches[0].clientY);
-  }
+  handleChangeBackground() {
 
-  handleTouchMove(touchMoveEvent) {
-    this.handleMove(touchMoveEvent.targetTouches[0].clientY);
-  }
-
-  handleTouchEnd() {
-    this.handleEnd();
   }
 
   render() {
@@ -160,15 +169,16 @@ class App extends Component {
 
     return (
       <StyledApp
-        onTouchStart={touchStartEvent => this.handleTouchStart(touchStartEvent)}
-        onTouchMove={touchMoveEvent => this.handleTouchMove(touchMoveEvent)}
-        onTouchEnd={() => this.handleTouchEnd()}
-        >
+        onTouchStart={touchStartEvent => this._handleTouchStart(touchStartEvent)}
+        onTouchMove={touchMoveEvent => this._handleTouchMove(touchMoveEvent)}
+        onTouchEnd={() => this._handleTouchEnd()}>
         <TotalExpenses
             user={ this.props.user }
             totalExpenses={ this.props.expenses.total }
             contactName={ this.props.contacts.activeContact.name }
-            contactColor={ this.props.contacts.activeContact.color } />
+            contactColor={ this.props.contacts.activeContact.color }
+            show={ this.state.showExpenses }
+            />
         <ContactList
             changeContact={ this.changeContact }
             contacts={ this.props.contacts.json }
