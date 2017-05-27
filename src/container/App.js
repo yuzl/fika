@@ -31,6 +31,17 @@ class App extends Component {
       .fetchContacts("usr_2y")
     this.props.expenses
       .fetchExpenses("usr_2y", "usr_1f")
+
+    this.state = {
+      top: 0,
+      velocity: 0,
+      timeOfLastDragEvent: 0,
+      touchStartY: 0,
+      prevTouchY: 0,
+      beingTouched: false,
+      height: 0,
+      intervalId: null
+    }
   }
 
   // Keylistener um User zu wechseln
@@ -78,6 +89,67 @@ class App extends Component {
       .setactiveContact(id)
   }
 
+
+  /***************************
+   ******* HANDLE SWIPE ********
+   ***************************/
+
+  handleStart(clientY) {
+    if (this.state.intervalId !== null) {
+      window.clearInterval(this.state.intervalId);
+    }
+    this.setState({
+      velocity: 0,
+      timeOfLastDragEvent: Date.now(),
+      touchStartY: clientY,
+      beingTouched: true,
+      intervalId: null
+    });
+  }
+
+  handleMove(clientY) {
+    if (this.state.beingTouched) {
+      const touchY = clientY;
+      const currTime = Date.now();
+      const elapsed = currTime - this.state.timeOfLastDragEvent;
+      const velocity = 20 * (touchY - this.state.prevTouchY) / elapsed;
+      let deltaY = touchY - this.state.touchStartY;
+      if (deltaY > 150) {
+        console.log("distance okay", deltaY);
+      } else if (deltaY > 0) {
+        console.log("distance too short", deltaY);
+        deltaY = 0;
+      }
+      this.setState({
+        top: deltaY,
+        velocity,
+        timeOfLastDragEvent: currTime,
+        prevTouchY: touchY
+      });
+    }
+  }
+
+  handleEnd() {
+    this.setState({
+      velocity: this.state.velocity,
+      touchStartY: 0,
+      beingTouched: false
+    });
+  }
+
+  handleTouchStart(touchStartEvent) {
+    touchStartEvent.preventDefault();
+    this.handleStart(touchStartEvent.targetTouches[0].clientY);
+  }
+
+  handleTouchMove(touchMoveEvent) {
+    this.handleMove(touchMoveEvent.targetTouches[0].clientY);
+  }
+
+  handleTouchEnd() {
+    this.handleEnd();
+  }
+
   render() {
 
     // Render sobald Daten geladen wurden
@@ -87,7 +159,11 @@ class App extends Component {
     }
 
     return (
-      <StyledApp>
+      <StyledApp
+        onTouchStart={touchStartEvent => this.handleTouchStart(touchStartEvent)}
+        onTouchMove={touchMoveEvent => this.handleTouchMove(touchMoveEvent)}
+        onTouchEnd={() => this.handleTouchEnd()}
+        >
         <TotalExpenses
             user={ this.props.user }
             totalExpenses={ this.props.expenses.total }
