@@ -11,7 +11,8 @@ const StyledTotalExpenses = styled.div`
   flex-direction: column;
   margin-top: 10vh;
   transition: all ${GLOBALS['T_LONG']} ${GLOBALS['T_EASING']};
-  opacity: ${props => props.show ? '1' : '0' }
+  opacity: ${props => props.show ? '1' : '0' };
+  height: ${props => props.show ? 'auto' : '0' };
 `;
 
 StyledTotalExpenses.displayName = 'StyledTotalExpenses';
