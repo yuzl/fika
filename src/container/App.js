@@ -94,7 +94,6 @@ class App extends Component {
    ***************************/
 
    _handleTouchStart(touchStartEvent) {
-     touchStartEvent.preventDefault()
      this.handleStart(touchStartEvent.targetTouches[0].clientY)
    }
 
