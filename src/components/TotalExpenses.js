@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import PayerInfo from './PayerInfo'
 import Amount from './Amount'
+import Expenses from './Expenses'
 
 import GLOBALS from '../globals.js'
 
@@ -37,7 +38,7 @@ class TotalExpenses extends Component {
   }
 
   isBorrower = (totalExpenses) => {
-    const isBorrower = totalExpenses >= 0 ? true : false
+    const isBorrower = (totalExpenses >= 0)
     this.setState( {isBorrower :  isBorrower} )
   }
 

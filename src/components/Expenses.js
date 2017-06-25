@@ -6,7 +6,7 @@ class Expenses extends Component {
     return (
       <ul>
         {this.props.expenses.slice().map(info =>
-          <li key={info.id} className={info.amount > 0 ? 'green' : 'red'}>
+          <li key={info.id}>
              { info.amount }
           </li>
         )}
