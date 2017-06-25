@@ -5,7 +5,12 @@ import Amount from './Amount'
 import Keyboard from './Keyboard'
 import PayerToggle from './PayerToggle'
 
+import GLOBALS from '../globals.js'
+
 const StyledNewExpense = styled.div`
+  transform: translateY(20%);
+  transition: all ${GLOBALS['T_LONG']} ${GLOBALS['T_EASING']};
+  opacity: ${props => props.show ? '1' : '0' };
 `;
 
 StyledNewExpense.displayName = 'StyledNewExpense';
@@ -56,7 +61,7 @@ class NewExpense extends Component {
 
   render () {
     return (
-      <StyledNewExpense>
+      <StyledNewExpense show={ this.props.show }>
 
         <PayerToggle
             isBorrower={ this.state.isBorrower }

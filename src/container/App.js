@@ -8,6 +8,7 @@ import TotalExpenses from '../components/TotalExpenses'
 
 const StyledApp = styled.div`
   overflow: hidden
+  min-height: 100vh;
 `
 
 const StyledLoading = styled.div`
@@ -186,7 +187,8 @@ class App extends Component {
         <NewExpense
             user={ this.props.user }
             activeContact={ this.props.contacts.activeContact }
-            expenses={ this.props.expenses } />
+            expenses={ this.props.expenses }
+            show={ !this.state.showExpenses } />
       </StyledApp>
     )
   }

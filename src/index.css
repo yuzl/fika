@@ -2,14 +2,15 @@
 
 html {
     -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation
+    touch-action: manipulation;
 }
 
 body {
     margin: 0;
     font-family: DIN Next W01;
     font-weight: 200;
-    color: #a3a3a3
+    color: #a3a3a3;
+    min-height: 100vh;
 }
 
 .b-1 {
