@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 
-import './firebaseTest.scss'
+import './firebaseTest.css'
 
 @inject(['user'], ['contacts'], ['expenses']) @observer
 class FirebaseTest extends Component {
