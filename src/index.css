@@ -1,0 +1,37 @@
+@import url(https://fast.fonts.net/cssapi/08d59f66-e4c5-4881-b50e-719c055575ea.css);
+
+html {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation
+}
+
+body {
+    margin: 0;
+    font-family: DIN Next W01;
+    font-weight: 200;
+    color: #a3a3a3
+}
+
+.b-1 {
+    background-color: #e9435c
+}
+
+.b-2 {
+    background-color: #904de9
+}
+
+.b-3 {
+    background-color: #4381e9
+}
+
+.c-1 {
+    color: #e9435c
+}
+
+.c-2 {
+    color: #904de9
+}
+
+.c-3 {
+    color: #4381e9
+}
