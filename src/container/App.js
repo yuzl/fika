@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import NewExpense from '../components/NewExpense'
 import ContactList from '../components/ContactList'
 import TotalExpenses from '../components/TotalExpenses'
+import RegisterOrLogin from './RegisterOrLogin'
 
 const StyledApp = styled.div`
   overflow: hidden
@@ -19,19 +20,11 @@ const StyledLoading = styled.div`
 StyledApp.displayName = 'StyledApp'
 StyledLoading.displayName = 'StyledLoading'
 
-@inject(['user'], ['contacts'], ['expenses']) @observer
+@inject(['user'], ['contacts'], ['expenses'], ['auth']) @observer
 class App extends Component {
 
   constructor(props) {
     super(props)
-
-    // App initialisieren fred= usr_1f yuri= usr_2y tilman= usr_3t
-    this.props.user
-      .fetchUser("usr_2y")
-    this.props.contacts
-      .fetchContacts("usr_2y")
-    this.props.expenses
-      .fetchExpenses("usr_2y", "usr_1f")
 
     this.state = {
       top: 0,
@@ -42,11 +35,12 @@ class App extends Component {
       intervalId: null,
       showExpenses: false
     }
+
   }
 
   // Keylistener um User zu wechseln
   componentWillMount() {
-    window.addEventListener("keydown", this._handleKeyDown.bind(this))
+    // window.addEventListener("keydown", this._handleKeyDown.bind(this))
   }
 
   _handleKeyDown(e) {
@@ -155,16 +149,16 @@ class App extends Component {
     })
   }
 
-  handleChangeBackground() {
-
-  }
-
   render() {
 
     // Render sobald Daten geladen wurden
     // TODO Loading Screen gestalten
     if (!this.props.contacts.isLoaded) {
-        return <StyledLoading>Loading...</StyledLoading>
+        return (
+          <StyledLoading>
+            <RegisterOrLogin authStore={ this.props.auth } />
+          </StyledLoading>
+        )
     }
 
     return (

@@ -17,6 +17,7 @@ const expenses = firebase.database().ref('expenses');
 const Fb = {
   root,
   contacts,
-  expenses
+  expenses,
+  firebase
 };
 export { Fb };
