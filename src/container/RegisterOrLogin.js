@@ -101,7 +101,7 @@ class RegisterOrLogin extends Component {
         }
 
         return (
-            <div style={{display:'flex',flexDirection:'column',alignItems:'center'}}>
+            <div>
                 {inProgress && <div>{inProgress}</div> }
                 {localError && <div>{localError}</div> }
                 {authError && <div>API Error: {JSON.stringify(authError)}</div> }
