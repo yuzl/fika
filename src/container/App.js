@@ -39,6 +39,10 @@ class App extends Component {
 
   }
 
+  changeContact= (id) => {
+    this.props.contacts
+      .setactiveContact(id)
+  }
 
   /***************************
    ******* HANDLE SWIPE DOWN *
@@ -119,7 +123,6 @@ class App extends Component {
     } else if (!this.props.contacts.isLoaded) {
       // Render sobald Daten geladen wurden
       // TODO Loading Screen gestalten
-
       const { contacts } = this.props
       contacts.fetchContacts()
 
