@@ -33,54 +33,10 @@ class App extends Component {
       prevTouchY: 0,
       beingTouched: false,
       intervalId: null,
-      showExpenses: false
+      showExpenses: false,
+      userIsAuthenticated: false
     }
 
-  }
-
-  // Keylistener um User zu wechseln
-  componentWillMount() {
-    // window.addEventListener("keydown", this._handleKeyDown.bind(this))
-  }
-
-  _handleKeyDown(e) {
-      switch (e.key) {
-        case "f":
-          console.log(">>> LOADING FRED")
-          this.props.user
-            .fetchUser("usr_1f")
-          this.props.contacts
-            .fetchContacts("usr_1f")
-          this.props.expenses
-            .fetchExpenses("usr_1f", "usr_2y")
-          break
-        case "y":
-        console.log(">>> LOADING YURI")
-          this.props.user
-            .fetchUser("usr_2y")
-          this.props.contacts
-            .fetchContacts("usr_2y")
-          this.props.expenses
-            .fetchExpenses("usr_2y", "usr_1f")
-          break
-        case "t":
-          console.log(">>> LOADING TILMAN")
-          this.props.user
-            .fetchUser("usr_3t")
-          this.props.contacts
-            .fetchContacts("usr_3t")
-          this.props.expenses
-            .fetchExpenses("usr_3t", "usr_1f")
-          break
-          default:
-          break
-      }
-
-  }
-
-  changeContact= (id) => {
-    this.props.contacts
-      .setactiveContact(id)
   }
 
 
@@ -151,14 +107,23 @@ class App extends Component {
 
   render() {
 
-    // Render sobald Daten geladen wurden
-    // TODO Loading Screen gestalten
-    if (!this.props.contacts.isLoaded) {
+    // RegisterOrLogin abwarten
+    if (!this.props.user.id) {
         return (
-          <StyledLoading>
-            <RegisterOrLogin authStore={ this.props.auth } />
-          </StyledLoading>
+          <RegisterOrLogin
+            authStore={ this.props.auth }
+            user={ this.props.user }
+            contacts={ this.props.contacts }
+          />
         )
+    } else if (!this.props.contacts.isLoaded) {
+      // Render sobald Daten geladen wurden
+      // TODO Loading Screen gestalten
+
+      const { contacts } = this.props
+      contacts.fetchContacts()
+
+      return <StyledLoading> Loading Data… </StyledLoading>
     }
 
     return (

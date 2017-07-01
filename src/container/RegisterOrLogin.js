@@ -96,6 +96,10 @@ class RegisterOrLogin extends Component {
 
         const authUser = authStore.authUser();
 
+        if(authUser) {
+          this.props.user.fetchUser()
+        }
+
         return (
             <div style={{display:'flex',flexDirection:'column',alignItems:'center'}}>
                 {inProgress && <div>{inProgress}</div> }
