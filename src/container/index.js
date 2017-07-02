@@ -1,3 +1,9 @@
 import App from './App';
+import Login from './Login';
 
-export default App
+const container = {
+  App,
+  Login,
+}
+
+export default container;

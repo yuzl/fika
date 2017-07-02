@@ -1,6 +1,7 @@
 import { observable, computed, toJS } from 'mobx';
 import { Fb } from '../Firebase';
 
+import User from '../User';
 import GLOBALS from '../../globals.js'
 
 const COLORS = {
@@ -14,9 +15,9 @@ class Contacts {
   @observable activeContact = {}
   @observable isLoaded = false
 
-  fetchContacts = ( userId ) => {
+  fetchContacts = () => {
     // .once lädt die Kontakte nur einmal zur Laufzeit
-    Fb.contacts.child(userId).on('value', (user) => {
+    Fb.contacts.child(User.id).on('value', (user) => {
 
       // Daten zurücksetzen
       this.all = []

@@ -1,11 +1,13 @@
 import user from './User'
 import contacts from './collection/Contacts'
 import expenses from './collection/Expenses'
+import auth from './AuthStore'
 
 const stores = {
   user,
   contacts,
-  expenses
+  expenses,
+  auth,
 }
 
 export default stores;
