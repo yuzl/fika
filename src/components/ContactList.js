@@ -7,8 +7,9 @@ const StyledContactList = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  height: 30vh;
+  position: absolute;
+  top: 10%;
+  transition:inherit;
 `;
 
 StyledContactList.displayName = 'StyledContactList';
@@ -24,7 +25,7 @@ class ContactList extends Component {
 
   render () {
     return (
-      <StyledContactList>
+      <StyledContactList style={{transform: 'translate3d(0,' + this.props.transformY + 'px,0)'}}>
         { this.props.contacts.map( (data, key) =>
             <Face
                 key={key}

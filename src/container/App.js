@@ -7,10 +7,19 @@ import ContactList from '../components/ContactList'
 import TotalExpenses from '../components/TotalExpenses'
 import RegisterOrLogin from './RegisterOrLogin'
 
+import GLOBALS from '../globals.js'
+
 const StyledApp = styled.div`
-  overflow: hidden
-  min-height: 100vh;
+  position: relative;
+  height: 100vh;
+  transition-timing-function:${GLOBALS['T_EASING']};
+  transition-duration: ${GLOBALS['T_SHORT']};
+  transition-property: ${props => snapAnimationChooser(props.snapTransition)};
 `
+
+const snapAnimationChooser = (snapTransition) => {
+  return snapTransition? "all" : "none"
+}
 
 const StyledLoading = styled.div`
   margin-top: 5em
@@ -27,10 +36,12 @@ class App extends Component {
     super(props)
 
     this.state = {
-      top: 0,
+      snapTransition: false,
       timeOfLastDragEvent: 0,
       touchStartY: 0,
       prevTouchY: 0,
+      transformY: 0,
+      currentPosition: 0,
       beingTouched: false,
       intervalId: null,
       showExpenses: false,
@@ -64,48 +75,69 @@ class App extends Component {
     if (this.state.intervalId !== null) {
       window.clearInterval(this.state.intervalId)
     }
+
+    const currentPosition = this.state.transformY;
+
     this.setState({
       timeOfLastDragEvent: Date.now(),
       touchStartY: clientY,
       beingTouched: true,
-      intervalId: null
+      intervalId: null,
+      currentPosition: currentPosition,
+      snapTransition: false
     })
   }
 
-  handleMove(clientY) {
+  handleMove(touchY) {
     if (this.state.beingTouched) {
-      const touchY = clientY
       const currTime = Date.now()
       const elapsed = currTime - this.state.timeOfLastDragEvent
-      const distance = 150
+      const currentPosition = this.state.currentPosition
 
       // TODO: Schnellen Swipe erkennen
       const velocity = 20 * (touchY - this.state.prevTouchY) / elapsed
-      console.log("speed of drag:", velocity)
+      //console.log("speed of drag:", velocity)
 
-      let deltaY = touchY - this.state.touchStartY
-      if (deltaY > distance) {
-        console.log("distance okay +:", deltaY)
-        this.setState({ showExpenses : true })
-      } else if (deltaY*-1 > distance) {
-        console.log("distance okay -:", deltaY, distance*-1)
-        this.setState({ showExpenses : false })
-      } else if (deltaY > 0) {
-        console.log("distance too short:", deltaY)
-        deltaY = 0
-      }
+      let distance = touchY - this.state.touchStartY
+
       this.setState({
-        top: deltaY,
         timeOfLastDragEvent: currTime,
-        prevTouchY: touchY
+        prevTouchY: touchY,
+        transformY: distance+currentPosition
       })
     }
   }
 
   handleEnd() {
+
+    const distance = this.state.transformY - this.state.currentPosition
+    const threshold = 64
+    let position = 0
+
+    // swipe down
+    if (distance > threshold) {
+      //console.log("threshold okay +:", distance)
+      console.log("THRESHOLD SWIPE DOWN");
+
+      position = 355
+
+    // swipe up
+  } else if (distance*-1 > threshold) {
+      //console.log("threshold okay -:", distance*-1, threshold)
+      console.log("THRESHOLD SWIPE UP");
+
+      position = 0
+
+    } else {
+      position = this.state.currentPosition
+    }
+
+
     this.setState({
       touchStartY: 0,
-      beingTouched: false
+      beingTouched: false,
+      snapTransition: true,
+      transformY: position
     })
   }
 
@@ -134,24 +166,31 @@ class App extends Component {
       <StyledApp
         onTouchStart={touchStartEvent => this._handleTouchStart(touchStartEvent)}
         onTouchMove={touchMoveEvent => this._handleTouchMove(touchMoveEvent)}
-        onTouchEnd={() => this._handleTouchEnd()}>
+        onTouchEnd={() => this._handleTouchEnd() }
+        snapTransition={ this.state.snapTransition }
+        >
         <TotalExpenses
             user={ this.props.user }
             totalExpenses={ this.props.expenses.total }
             contactName={ this.props.contacts.activeContact.name }
             contactColor={ this.props.contacts.activeContact.color }
             show={ this.state.showExpenses }
+            transformY={this.state.transformY}
             />
         <ContactList
             changeContact={ this.changeContact }
             contacts={ this.props.contacts.json }
             user={ this.props.user }
-            expenses={ this.props.expenses } />
+            expenses={ this.props.expenses }
+            transformY={this.state.transformY}
+            />
         <NewExpense
             user={ this.props.user }
             activeContact={ this.props.contacts.activeContact }
             expenses={ this.props.expenses }
-            show={ !this.state.showExpenses } />
+            show={ !this.state.showExpenses }
+            transformY={this.state.transformY} 
+            />
       </StyledApp>
     )
   }

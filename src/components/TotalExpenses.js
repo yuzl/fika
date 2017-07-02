@@ -9,10 +9,9 @@ import GLOBALS from '../globals.js'
 const StyledTotalExpenses = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 10vh;
-  transition: all ${GLOBALS['T_LONG']} ${GLOBALS['T_EASING']};
-  opacity: ${props => props.show ? '1' : '0' };
-  height: ${props => props.show ? 'auto' : '0' };
+  position:absolute;
+  top:-15%;
+  transition:inherit;
 `;
 
 StyledTotalExpenses.displayName = 'StyledTotalExpenses';
@@ -44,7 +43,7 @@ class TotalExpenses extends Component {
   render () {
 
     return (
-      <StyledTotalExpenses show={ this.props.show }>
+      <StyledTotalExpenses show={ this.props.show } style={{transform: 'translate3d(0,' + this.props.transformY + 'px,0)'}}>
          <PayerInfo
             totalExpenses={ this.props.totalExpenses }
             contactColor={ this.props.contactColor }

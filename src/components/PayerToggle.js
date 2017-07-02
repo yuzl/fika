@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
+import styled from 'styled-components'
 
 import PayerInfo from './PayerInfo'
+
+const StyledPayerToggle = styled.div`
+
+`;
 
 class PayerToggle extends Component {
 
@@ -25,12 +30,12 @@ class PayerToggle extends Component {
   render () {
 
     return (
-      <div onClick={() => this.togglePayer() }>
+      <StyledPayerToggle onClick={() => this.togglePayer() }>
         <PayerInfo
             isBorrower={ this.state.isBorrower }
             contactColor={ this.props.contactColor }
             contactName={ this.props.contactName } />
-      </div>
+      </StyledPayerToggle>
     )
   }
 }
