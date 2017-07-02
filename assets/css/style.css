@@ -10,6 +10,7 @@ body {
   -webkit-font-smoothing: antialiased;
   font-family: 'europa';
   font-weight: 400;
+  --circle: calc((100vh - 450px) * 2);
 }
 .font-sans {
   font-family: 'europa';
@@ -59,8 +60,19 @@ p {
   vertical-align: middle;
   z-index: 10;
 }
+.circle {
+  width: var(--circle);
+  height: var(--circle);
+  box-shadow: 0 0 100px rgba(233, 67, 93, 0.5);
+  background-color: #e9435c;
+  border-radius: 50%;
+  transform: translate3d(calc(var(--circle)/-2), -50%, 0);
+  position: absolute;
+  left: 50%;
+  top: 0;
+}
 .wrapper {
-  position: fixed;
+  position: absolute;
   bottom: 10%;
   text-align: center;
   width: 100%;
