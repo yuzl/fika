@@ -112,12 +112,17 @@ p {
         border-bottom: 1px solid #D8D8D8;
         .font-sans;
         font-size: 18px;
-        color: @grey;
+        color: @dark;
         width: 100%;
         text-align: center;
         padding-bottom: 10px;
         font-weight: 700;
         margin: 15px 0 30px;
+        outline: none;
+        
+        &::-webkit-input-placeholder {
+            color: @grey;
+        }
     }
 }
 

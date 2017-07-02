@@ -92,12 +92,16 @@ p {
   font-family: 'europa';
   font-weight: 400;
   font-size: 18px;
-  color: #9c9db0;
+  color: #656565;
   width: 100%;
   text-align: center;
   padding-bottom: 10px;
   font-weight: 700;
   margin: 15px 0 30px;
+  outline: none;
+}
+.content input::-webkit-input-placeholder {
+  color: #9c9db0;
 }
 .button {
   display: block;
