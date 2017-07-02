@@ -10,7 +10,7 @@ body {
   -webkit-font-smoothing: antialiased;
   font-family: 'europa';
   font-weight: 400;
-  --circle: calc((100vh - 450px) * 2);
+  --circle: calc((100vh - 500px) * 2);
 }
 .font-sans {
   font-family: 'europa';
@@ -42,6 +42,7 @@ p {
   line-height: 1.6;
   font-family: "adobe-caslon-pro";
   font-weight: 400;
+  color: #656565;
 }
 .centered {
   position: relative;
@@ -81,8 +82,22 @@ p {
 .content {
   text-align: center;
   max-width: 400px;
+  width: 80%;
   margin: 0 auto;
   display: block;
+}
+.content input {
+  border: none;
+  border-bottom: 1px solid #D8D8D8;
+  font-family: 'europa';
+  font-weight: 400;
+  font-size: 18px;
+  color: #9c9db0;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 10px;
+  font-weight: 700;
+  margin: 15px 0 30px;
 }
 .button {
   display: block;

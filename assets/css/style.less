@@ -3,6 +3,7 @@
 @mobile:    ~"only screen and (max-width: 540px)";
 
 @grey: #9C9DB0;
+@dark: #656565;
 @red: #E9435C;
 
 html, body {
@@ -15,7 +16,7 @@ html, body {
     -webkit-font-smoothing: antialiased;
     .font-sans;
     
-    --circle: calc(~"(100vh - 450px) * 2");
+    --circle: calc(~"(100vh - 500px) * 2");
 }
 
 .font-sans {
@@ -53,6 +54,7 @@ p {
     font-size: 1.2em;
     line-height: 1.6;
     .font-serif;
+    color: @dark;
 }
 
 .centered {
@@ -101,15 +103,21 @@ p {
 .content {
     text-align: center;
     max-width: 400px;
+    width: 80%;
     margin: 0 auto;
     display: block;
     
-    h2 {
-        
-    }
-    
-    p {
-        
+    input {
+        border: none;
+        border-bottom: 1px solid #D8D8D8;
+        .font-sans;
+        font-size: 18px;
+        color: @grey;
+        width: 100%;
+        text-align: center;
+        padding-bottom: 10px;
+        font-weight: 700;
+        margin: 15px 0 30px;
     }
 }
 
