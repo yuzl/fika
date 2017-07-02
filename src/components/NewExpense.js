@@ -8,9 +8,9 @@ import PayerToggle from './PayerToggle'
 import GLOBALS from '../globals.js'
 
 const StyledNewExpense = styled.div`
-  transform: translateY(20%);
-  transition: all ${GLOBALS['T_LONG']} ${GLOBALS['T_EASING']};
-  opacity: ${props => props.show ? '1' : '0' };
+  position: fixed;
+  bottom: 0;
+  transition:inherit;
 `;
 
 StyledNewExpense.displayName = 'StyledNewExpense';
@@ -61,7 +61,7 @@ class NewExpense extends Component {
 
   render () {
     return (
-      <StyledNewExpense show={ this.props.show }>
+      <StyledNewExpense show={ this.props.show } style={{transform: 'translate3d(0,' + this.props.transformY + 'px,0)'}}>
 
         <PayerToggle
             isBorrower={ this.state.isBorrower }

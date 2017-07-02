@@ -10,7 +10,10 @@ body {
     font-family: DIN Next W01;
     font-weight: 200;
     color: #a3a3a3;
-    min-height: 100vh;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: fixed;
 }
 
 .b-1 {

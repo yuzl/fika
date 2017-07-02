@@ -5,6 +5,7 @@ const StyledAmount = styled.div`
   text-align: center;
   font-size: 2.5em;
   color: ${props => props.color};
+  margin-bottom:20px;
 
   &::after{
     content: "€";
