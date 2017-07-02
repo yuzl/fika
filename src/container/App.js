@@ -9,6 +9,10 @@ import RegisterOrLogin from './RegisterOrLogin'
 
 import GLOBALS from '../globals.js'
 
+const snapAnimationChooser = (snapTransition) => {
+  return snapTransition? "all" : "none"
+}
+
 const StyledApp = styled.div`
   position: relative;
   height: 100vh;
@@ -16,10 +20,6 @@ const StyledApp = styled.div`
   transition-duration: ${GLOBALS['T_SHORT']};
   transition-property: ${props => snapAnimationChooser(props.snapTransition)};
 `
-
-const snapAnimationChooser = (snapTransition) => {
-  return snapTransition? "all" : "none"
-}
 
 const StyledLoading = styled.div`
   margin-top: 5em
@@ -91,11 +91,11 @@ class App extends Component {
   handleMove(touchY) {
     if (this.state.beingTouched) {
       const currTime = Date.now()
-      const elapsed = currTime - this.state.timeOfLastDragEvent
       const currentPosition = this.state.currentPosition
 
       // TODO: Schnellen Swipe erkennen
-      const velocity = 20 * (touchY - this.state.prevTouchY) / elapsed
+      //const elapsed = currTime - this.state.timeOfLastDragEvent
+      //const velocity = 20 * (touchY - this.state.prevTouchY) / elapsed
       //console.log("speed of drag:", velocity)
 
       let distance = touchY - this.state.touchStartY
@@ -189,7 +189,7 @@ class App extends Component {
             activeContact={ this.props.contacts.activeContact }
             expenses={ this.props.expenses }
             show={ !this.state.showExpenses }
-            transformY={this.state.transformY} 
+            transformY={this.state.transformY}
             />
       </StyledApp>
     )

@@ -12,6 +12,7 @@ export default {
     C_1: '#E9435C', // red
     C_2: '#904DE9', // purple
     C_3: '#4381E9', // blue
+    C_4: '#40E39E', // green
 
     /***************************
      ******* TYPOGRAHPY ********

@@ -5,8 +5,6 @@ import Amount from './Amount'
 import Keyboard from './Keyboard'
 import PayerToggle from './PayerToggle'
 
-import GLOBALS from '../globals.js'
-
 const StyledNewExpense = styled.div`
   position: fixed;
   bottom: 0;

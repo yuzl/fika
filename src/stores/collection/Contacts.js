@@ -7,7 +7,8 @@ import GLOBALS from '../../globals.js'
 const COLORS = {
   'c-1': GLOBALS["C_1"],
   'c-2': GLOBALS["C_2"],
-  'c-3': GLOBALS["C_3"]
+  'c-3': GLOBALS["C_3"],
+  'c-4': GLOBALS["C_4"]
 };
 
 class Contacts {

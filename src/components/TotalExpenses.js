@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import PayerInfo from './PayerInfo'
 import Amount from './Amount'
 
-import GLOBALS from '../globals.js'
-
 const StyledTotalExpenses = styled.div`
   display: flex;
   flex-direction: column;
