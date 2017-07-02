@@ -5,15 +5,26 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  font-size: 14px;
+  font-size: 18px;
   line-height: 1.4;
   -webkit-font-smoothing: antialiased;
+  font-family: 'europa';
+  font-weight: 400;
+}
+.font-sans {
+  font-family: 'europa';
+  font-weight: 400;
+}
+.font-serif {
+  font-family: "adobe-caslon-pro";
+  font-weight: 400;
 }
 h1 {
-  font-size: 2em;
+  font-size: 2.5em;
 }
 h2 {
-  font-size: 1.5em;
+  font-size: 2em;
+  color: #e9435c;
 }
 h3 {
   font-size: 1.25em;
@@ -28,6 +39,8 @@ a {
 p {
   font-size: 1.2em;
   line-height: 1.6;
+  font-family: "adobe-caslon-pro";
+  font-weight: 400;
 }
 .centered {
   position: relative;
@@ -45,4 +58,42 @@ p {
   display: inline-block;
   vertical-align: middle;
   z-index: 10;
+}
+.wrapper {
+  position: fixed;
+  bottom: 10%;
+  text-align: center;
+  width: 100%;
+}
+.content {
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+  display: block;
+}
+.button {
+  display: block;
+  padding-top: 20px;
+  text-align: center;
+}
+.button-inner {
+  padding: 17px 40px 18px;
+  display: inline-block;
+  margin: 0 auto;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+  border-radius: 30px;
+  transition: box-shadow 0.2s;
+  cursor: pointer;
+  position: relative;
+}
+.button-inner svg {
+  height: 14px;
+  width: 21px;
+  margin: 0;
+}
+.button-inner svg path {
+  fill: #9c9db0;
+}
+.button-inner:hover {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
