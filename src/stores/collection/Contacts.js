@@ -8,7 +8,8 @@ const COLORS = {
   'c-1': GLOBALS["C_1"],
   'c-2': GLOBALS["C_2"],
   'c-3': GLOBALS["C_3"],
-  'c-4': GLOBALS["C_4"]
+  'c-4': GLOBALS["C_4"],
+  'c-5': GLOBALS["C_5"]
 };
 
 class Contacts {
