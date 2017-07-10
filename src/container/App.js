@@ -39,7 +39,9 @@ class App extends Component {
       snapTransition: false,
       timeOfLastDragEvent: 0,
       touchStartY: 0,
+      touchStartX: 0,
       prevTouchY: 0,
+      prevTouchX: 0,
       transformY: 0,
       currentPosition: 0,
       beingTouched: false,
@@ -60,27 +62,28 @@ class App extends Component {
    ***************************/
 
    _handleTouchStart(touchStartEvent) {
-     this.handleStart(touchStartEvent.targetTouches[0].clientY)
+     this.handleStart(touchStartEvent.targetTouches[0].clientY, touchStartEvent.targetTouches[0].clientX)
    }
 
    _handleTouchMove(touchMoveEvent) {
-     this.handleMove(touchMoveEvent.targetTouches[0].clientY)
+     this.handleMove(touchMoveEvent.targetTouches[0].clientY, touchMoveEvent.targetTouches[0].clientX)
    }
 
    _handleTouchEnd() {
      this.handleEnd()
    }
 
-  handleStart(clientY) {
+  handleStart(clientY, clientX) {
     if (this.state.intervalId !== null) {
       window.clearInterval(this.state.intervalId)
     }
 
-    const currentPosition = this.state.transformY;
+    const currentPosition = Math.round(this.state.transformY);
 
     this.setState({
       timeOfLastDragEvent: Date.now(),
       touchStartY: clientY,
+      touchStartX: clientX,
       beingTouched: true,
       intervalId: null,
       currentPosition: currentPosition,
@@ -88,8 +91,21 @@ class App extends Component {
     })
   }
 
-  handleMove(touchY) {
+  handleMove(touchY, touchX) {
     if (this.state.beingTouched) {
+      const deltaX = Math.abs(touchX - this.state.touchStartX)
+      const deltaY = Math.abs(touchY - this.state.touchStartY)
+      const detectSwipeThreshold = 20
+
+      // Wait a given distance to detect the swipe direction
+      if(deltaX + deltaY < detectSwipeThreshold ) return null;
+
+      // IF you swipe more left or right than up or down
+      if( (deltaX) > (deltaY) ) {
+        console.log('SWIPE DIAGONAL');
+        return null;
+      }
+
       const currTime = Date.now()
       const currentPosition = this.state.currentPosition
 
@@ -103,7 +119,7 @@ class App extends Component {
       this.setState({
         timeOfLastDragEvent: currTime,
         prevTouchY: touchY,
-        transformY: distance+currentPosition
+        transformY: Math.round(distance+currentPosition)
       })
     }
   }
@@ -111,19 +127,17 @@ class App extends Component {
   handleEnd() {
 
     const distance = this.state.transformY - this.state.currentPosition
-    const threshold = 64
+    const snapThreshold = 64
     let position = 0
 
     // swipe down
-    if (distance > threshold) {
-      //console.log("threshold okay +:", distance)
+    if (distance > snapThreshold) {
       console.log("THRESHOLD SWIPE DOWN");
 
       position = 355
 
     // swipe up
-  } else if (distance*-1 > threshold) {
-      //console.log("threshold okay -:", distance*-1, threshold)
+  } else if (distance*-1 > snapThreshold) {
       console.log("THRESHOLD SWIPE UP");
 
       position = 0
@@ -134,10 +148,11 @@ class App extends Component {
 
 
     this.setState({
+      touchStartX: 0,
       touchStartY: 0,
       beingTouched: false,
       snapTransition: true,
-      transformY: position
+      transformY: Math.round(position)
     })
   }
 

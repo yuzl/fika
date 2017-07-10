@@ -5,8 +5,10 @@ import Face from './Face'
 
 const StyledContactList = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  overflow: auto;
+  width:100%;
   position: absolute;
   top: 10%;
   transition:inherit;
