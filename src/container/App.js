@@ -16,6 +16,7 @@ const snapAnimationChooser = (snapTransition) => {
 const StyledApp = styled.div`
   position: relative;
   height: 100vh;
+  user-select: none;
   transition-timing-function:${GLOBALS['T_EASING']};
   transition-duration: ${GLOBALS['T_SHORT']};
   transition-property: ${props => snapAnimationChooser(props.snapTransition)};
